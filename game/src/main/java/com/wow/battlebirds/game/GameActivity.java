@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -26,7 +28,9 @@ public class GameActivity extends Activity implements Game {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        renderView = new GameView(this);
+        Bitmap frameBuffer = Bitmap.createBitmap(1280,720, Config.RGB_565);
+
+        renderView = new GameView(this, frameBuffer);
         setContentView(renderView);
         setScreen(new GameScreen(this));
 
