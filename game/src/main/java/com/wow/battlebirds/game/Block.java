@@ -22,7 +22,7 @@ public class Block extends Asset {
         } else {
             System.out.println("Max Blocks Reached");
         }
-
+        Point point = new Point(/*NEED XPOS FROM TOUCH RECORD, NEED YPOS FROM TOUCH RECORD*/);
         //GET INPUT AND CONVERT TO YPOS AND XPOS!
         if(yPos < 100) yPos = 100;
         while(yPos > 100) yPos--; //Dat Gravity
