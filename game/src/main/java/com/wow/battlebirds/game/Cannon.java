@@ -9,6 +9,7 @@ public class Cannon {
     public int ammo;
     public float xPos;
     public float randomNum;
+    public int player;
 
 
     Cannon(int player){
@@ -32,8 +33,11 @@ public class Cannon {
         angle = 15 + (int)(Math.random()*((75 - 15) + 1));
     }
 
-    public void ammoReset(Cannon Cannon){
-        //Check random to see if True random or Pseudo random (Seed?)
-        Cannon.ammo = 10;
+    public void ammoReset(){
+        ammo = 10;
+    }
+
+    public void launchBird(){
+        Bird projectile = new Bird(player, angle);
     }
 }
