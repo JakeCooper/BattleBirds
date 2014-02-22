@@ -7,7 +7,7 @@ public class Cannon {
     //Random Angle calibration
     public float angle;
     public int ammo;
-    public int xPos;
+    public float xPos;
     public float randomNum;
 
     Cannon(){
