@@ -42,7 +42,7 @@ public class Cannon {
     }
 
     public void launchBird(){
-        Bird projectile = new Bird(player, angle);
+        Bird projectile = new Bird(player, angle, xPos, yPos);
         Vx = Velocity * (float)Math.cos(angle);
         Vy = Velocity * (float)Math.sin(angle);
         projectile.launch(Vx, Vy, xPos, yPos);
