@@ -1,16 +1,16 @@
 package com.wow.battlebirds.game;
 
-import java.util.List;
+import java.util.Queue;
+import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by Andrew on 22/02/14.
  * For keeping up with touch events
  */
-public interface Input
-{
+public interface Input extends View.OnTouchListener{
 
-    public static class TouchEvent
-    {
+    public static class TouchEvent{
         public static final int TOUCH_DOWN = 0;
         public static final int TOUCH_UP = 1;
         public static final int TOUCH_DRAGGED = 2;
@@ -28,6 +28,6 @@ public interface Input
 
     public int getTouchY(int pointer);
 
-    public List<TouchEvent> getTouchEvents();
+    public Queue<MotionEvent> getMotionEvents();
 }
 
