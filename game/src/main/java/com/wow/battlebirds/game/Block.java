@@ -13,7 +13,7 @@ public class Block extends Asset {
     public int yPos;
     public int Vy;
 
-    Block(){
+    Block(int xPos, int yPos){
         if(numBlocks > 0){
             int length = 20;
             int height = 20;
@@ -22,6 +22,7 @@ public class Block extends Asset {
         } else {
             System.out.println("Max Blocks Reached");
         }
+        Point point = new Point(xPos, yPos);
         //GET INPUT AND CONVERT TO YPOS AND XPOS!
         if(yPos < 100) yPos = 100;
         while(yPos > 100) yPos--; //Dat Gravity
