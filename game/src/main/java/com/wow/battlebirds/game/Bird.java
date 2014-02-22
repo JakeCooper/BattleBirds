@@ -14,7 +14,7 @@ public class Bird extends Asset {
     public int eggXPos;
     public int eggYPos;
 
-    Bird(Point createPosition, int Velocity, int angle){
+    Bird(Point createPosition, int Velocity, float angle){
         super(createPosition, 20, 20);
 
         Vx = Velocity * (float)Math.cos(angle);

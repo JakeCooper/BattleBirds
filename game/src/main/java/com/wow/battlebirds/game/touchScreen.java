@@ -33,7 +33,7 @@ public abstract class touchScreen implements Input{
 
             // Fires the cannon
             }else if(p == cannon.position ){
-                Bird projectile = new Bird(cannon.team, cannon.angle);
+                Bird projectile = new Bird(cannon.position, 10, cannon.angle);
 
             // Moves the cannon
             }else if(event.getRawX() != dx || event.getRawY() != dy ){

@@ -18,7 +18,7 @@ public class Cannon extends Asset {
     private final int height = 20;
 
     Cannon(Point createPosition, int ammo, int player){
-        super(createPosition, 20, 20);
+        super(createPosition, 50, 50);
         this.ammo = ammo;
 
         cannonCalibration();
@@ -26,7 +26,8 @@ public class Cannon extends Asset {
 
     public void cannonCalibration(){
         //Check random to see if True random or Pseudo random (Seed?)
-        angle = 15 + (int)(Math.random()*((75 - 15) + 1));
+        angle = 15 + (float)(Math.random()*((75 - 15) + 1));
+
     }
 
     public void ammoReset(){
