@@ -17,17 +17,14 @@ public class Cannon extends Asset {
 
 
 
-    Cannon(int player){
+    Cannon(int player, Point point){
         ammo = 10;
-        yPos = 100;
         cannonCalibration();
         switch (player){
-            case 1: xPos = 100; //XPOS RELATIVE TO 1000 PIXELS IN THE X AXIS
-                    //RENDER PLAYER1 HERE
+            case 1: //RENDER PLAYER1 HERE
                     break;
 
-            case 2: xPos = 900; //XPOS RELATIVE TO 1000 PIXELS IN THE X AXIS
-                    //RENDER PLAYER2 HERE
+            case 2: //RENDER PLAYER2 HERE
                     break;
         }
     }
@@ -41,11 +38,11 @@ public class Cannon extends Asset {
         ammo = 10;
     }
 
-    public void launchBird(){
-        Bird projectile = new Bird(player, angle, xPos, yPos);
+    public void launchBird(Point point){
+        Bird projectile = new Bird(player, angle);
         Vx = Velocity * (float)Math.cos(angle);
         Vy = Velocity * (float)Math.sin(angle);
-        projectile.launch(Vx, Vy, xPos, yPos);
+        projectile.launch(Vx, Vy, point);
     }
 
     @Override

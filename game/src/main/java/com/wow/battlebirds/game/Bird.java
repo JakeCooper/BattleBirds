@@ -14,11 +14,9 @@ public class Bird extends Asset {
 
 
 
-    Bird(int team, float angle, int xPos, int yPos){
+    Bird(int team, float angle){
         Vx = Velocity * (float)Math.cos(angle);
         Vy = Velocity * (float)Math.sin(angle);
-        //eggXPos = xPos + cannonLength * (int)Math.cos(angle);
-        //eggYPos = yPos + cannonLength * (int)Math.sin(angle);
         switch (team){
             case 1: //RENDER BIRD(RED)
                     break;
@@ -27,12 +25,12 @@ public class Bird extends Asset {
                     break;
         }
     }
-    public void launch(float Vix, float Viy, float xPos, float yPos){
+    public void launch(float Vix, float Viy, Point point){
 
-        while(eggYPos > 100){
+        while(point.y > 100){
             //int t = (int)(2*Viy/9.8);
-            eggXPos += Vix;
-            eggYPos += Viy;
+            point.x += Vix;
+            point.y += Viy;
             Viy += -9.8;
         }
     }
