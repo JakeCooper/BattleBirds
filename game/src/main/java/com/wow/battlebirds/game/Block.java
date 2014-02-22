@@ -23,9 +23,8 @@ public class Block extends Asset {
             System.out.println("Max Blocks Reached");
         }
         Point point = new Point(xPos, yPos);
-        //GET INPUT AND CONVERT TO YPOS AND XPOS!
-        if(yPos < 100) yPos = 100;
-        while(yPos > 100) yPos--; //Dat Gravity
+        if(point.y < 100) point.y = 100;
+        while(point.y > 100) point.y--; //Dat Gravity
 
 
     }/*BlockConstructor*/
