@@ -5,4 +5,5 @@ package com.wow.battlebirds.game;
  * The Fort
  */
 public class Fort {
+
 }
