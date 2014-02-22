@@ -28,6 +28,7 @@ public abstract class GameActivity extends Activity implements Game {
 
         renderView = new GameView(this);
         setContentView(renderView);
+        setScreen(new GameScreen(this));
 
         Log.d("GameActivity", "View added");
     }
@@ -63,5 +64,17 @@ public abstract class GameActivity extends Activity implements Game {
     public Audio getAudio()
     {
         return audio;
+    }
+
+    @Override
+    public void setScreen(Screen screen)
+    {
+        this.screen = screen;
+    }
+
+    @Override
+    public Screen getCurrentScreen()
+    {
+        return screen;
     }
 }

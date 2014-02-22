@@ -5,7 +5,7 @@ import android.view.Gravity;
 /**
  * Created by Jake on 22/02/14.
  */
-public class Block {
+public class Block extends Asset {
     public int length;
     public int height;
     public int numBlocks = 15;

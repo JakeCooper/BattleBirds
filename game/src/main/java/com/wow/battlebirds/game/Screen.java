@@ -5,6 +5,11 @@ package com.wow.battlebirds.game;
  */
 public abstract class Screen {
 
+    protected final Game game;
+
+    public Screen(Game game) {
+        this.game = game;
+    }
     public abstract void update();
 
     public abstract void draw();

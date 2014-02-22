@@ -13,4 +13,7 @@ public interface Game {
 
     public Renderer getRenderer();
 
+    public void setScreen(Screen screen);
+
+    public Screen getCurrentScreen();
 }

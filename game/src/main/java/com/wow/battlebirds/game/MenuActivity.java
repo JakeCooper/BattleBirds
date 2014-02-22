@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
+import android.content.Intent;
 
 
 /**
@@ -24,13 +24,15 @@ public class MenuActivity extends Activity {
 
         setContentView(R.layout.activity_menu);
 
-        Log.d("GameActivity", "View added");
+        Log.d("MenuActivity", "View added");
     }
 
     /** Called when the user touches the button */
     public void runGame(View view) {
-        TextView tv = (TextView)findViewById(R.id.textView);
-        tv.setText("Welcome to android");
+
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+
     }
 
 }
