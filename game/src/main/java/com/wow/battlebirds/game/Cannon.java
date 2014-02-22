@@ -17,6 +17,5 @@ public class Cannon {
     public void cannonCalibration(Cannon Cannon){
         //Check random to see if True random or Pseudo random (Seed?)
         Cannon.angle = 15 + (int)(Math.random()*((75 - 15) + 1));
-        int bat = 5;
     }
 }
