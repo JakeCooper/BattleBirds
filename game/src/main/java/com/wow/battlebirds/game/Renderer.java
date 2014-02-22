@@ -16,7 +16,7 @@ public interface Renderer
 
     public void drawBox();
 
-    public void drawImage(Image img);
+    public void drawImage(Image img, int x, int y);
 
     public void drawString(String str, Paint paint);
 }

@@ -2,6 +2,7 @@ package com.wow.battlebirds.game;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Bitmap;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,15 +13,22 @@ import android.view.SurfaceView;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameEntry thread;
+    private Bitmap framebuffer;
 
-    public GameView(Context context)
+    public GameView(Context context, Bitmap framebuffer)
     {
         super(context);
         getHolder().addCallback(this);
 
         thread = new GameEntry(getHolder(), this);
+        this.framebuffer = framebuffer;
 
         setFocusable(true);
+    }
+
+    public Bitmap getFramebuffer()
+    {
+        return framebuffer;
     }
 
     @Override
@@ -49,12 +57,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             }
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        return super.onTouchEvent(event);
     }
 
     @Override

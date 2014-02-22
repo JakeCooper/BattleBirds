@@ -5,7 +5,6 @@ package com.wow.battlebirds.game;
  */
 public class GameScreen extends Screen
 {
-
     public GameScreen(Game game)
     {
         super(game);

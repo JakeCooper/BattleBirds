@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import android.graphics.Paint;
 import android.content.res.AssetManager;
+import android.graphics.Canvas;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -18,10 +19,13 @@ public class AndroidRenderer implements Renderer {
     private Bitmap framebuffer;
     private AssetManager assets;
     private Game game;
+    private Canvas canvas;
 
     public AndroidRenderer(Game game, AssetManager assets, Bitmap frameBuffer)
     {
         this.game = game;
+        this.framebuffer = framebuffer;
+        canvas = new Canvas(framebuffer);
     }
 
     public Image newImage(String file)
@@ -68,9 +72,10 @@ public class AndroidRenderer implements Renderer {
 
     }
 
-    public void drawImage(Image img)
+    @Override
+    public void drawImage(Image img, int x, int y)
     {
-
+        canvas.drawBitmap(img.getBitmap(), x, y, null);
     }
 
     public void drawString(String str, Paint paint)

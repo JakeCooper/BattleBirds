@@ -1,6 +1,10 @@
 package com.wow.battlebirds.game;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.util.Log;
 
 /**
@@ -29,9 +33,18 @@ public class GameEntry extends Thread {
     public void run()
     {
         long tickCount = 0L;
+        Rect dstRect = new Rect();
 
         while (running)
         {
+            if(!gamePanel.getHolder().getSurface().isValid())
+                continue;
+
+            Canvas canvas = gamePanel.getHolder().lockCanvas();
+            canvas.getClipBounds(dstRect);
+            canvas.drawBitmap(gamePanel.getFramebuffer(), null, dstRect, null);
+            gamePanel.getHolder().unlockCanvasAndPost(canvas);
+
             tickCount++;
         }
     }
