@@ -33,7 +33,6 @@ public class GameEntry extends Thread {
         while (running)
         {
             tickCount++;
-
         }
     }
 }

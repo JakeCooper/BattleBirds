@@ -9,7 +9,7 @@ import android.view.WindowManager;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class GameActivity extends Activity implements Game {
+public abstract class GameActivity extends Activity implements Game {
 
     GameView renderView;
     Input input;
@@ -28,6 +28,7 @@ public class GameActivity extends Activity implements Game {
 
         renderView = new GameView(this);
         setContentView(renderView);
+        setScreen(new GameScreen(this));
 
         Log.d("GameActivity", "View added");
     }
@@ -63,5 +64,17 @@ public class GameActivity extends Activity implements Game {
     public Audio getAudio()
     {
         return audio;
+    }
+
+    @Override
+    public void setScreen(Screen screen)
+    {
+        this.screen = screen;
+    }
+
+    @Override
+    public Screen getCurrentScreen()
+    {
+        return screen;
     }
 }

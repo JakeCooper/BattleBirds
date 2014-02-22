@@ -3,7 +3,7 @@ package com.wow.battlebirds.game;
 /**
  * Created by Jake on 22/02/14.
  */
-public class Bird {
+public class Bird extends Asset {
     public final float Velocity = 20;
     public final int cannonLength = 200;
     public int team;
