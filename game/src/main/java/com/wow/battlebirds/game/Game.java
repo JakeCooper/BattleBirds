@@ -13,6 +13,8 @@ public interface Game {
 
     public Renderer getRenderer();
 
+    public AssetFactory getAssetFactory();
+
     public void setScreen(Screen screen);
 
     public Screen getCurrentScreen();

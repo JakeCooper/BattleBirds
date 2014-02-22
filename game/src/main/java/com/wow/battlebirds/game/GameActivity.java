@@ -19,6 +19,7 @@ public class GameActivity extends Activity implements Game {
     Renderer renderer;
     Audio audio;
     Screen screen;
+    AssetFactory assets;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class GameActivity extends Activity implements Game {
 
         Bitmap frameBuffer = Bitmap.createBitmap(1280,720, Config.RGB_565);
 
+        assets = new AssetFactory();
         renderView = new GameView(this, frameBuffer);
         setContentView(renderView);
         setScreen(new GameScreen(this));
@@ -63,6 +65,9 @@ public class GameActivity extends Activity implements Game {
     {
         return renderer;
     }
+
+    @Override
+    public AssetFactory getAssetFactory() { return assets; }
 
     @Override
     public Audio getAudio()
