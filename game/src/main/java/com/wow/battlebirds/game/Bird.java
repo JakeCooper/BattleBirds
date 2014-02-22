@@ -4,18 +4,13 @@ package com.wow.battlebirds.game;
  * Created by Jake on 22/02/14.
  */
 public class Bird {
-    public final float Velocity = 20;
     public final int cannonLength = 200;
     public int team;
-    public float Vx;
-    public float Vy;
-    public int eggXPos;
-    public int eggYPos;
+    public float eggXPos;
+    public float eggYPos;
 
 
-    Bird(int team, float angle, int xPos, int yPos){
-        Vx = Velocity * (float)Math.cos(angle);
-        Vy = Velocity * (float)Math.sin(angle);
+    Bird(int team, float angle){
         //eggXPos = xPos + cannonLength * (int)Math.cos(angle);
         //eggYPos = yPos + cannonLength * (int)Math.sin(angle);
         switch (team){
@@ -25,6 +20,16 @@ public class Bird {
             case 2: //RENDER BIRD(BLUE)
                     break;
         }
+
+    }
+    public void launch(float Vix, float Viy, float xPos, float yPos){
+        while(eggYPos > 100){
+            int t = (int)(2*Viy/9.8);
+            eggXPos += Vix * t;
+
+
+        }
+
     }
 
 }

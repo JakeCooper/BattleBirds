@@ -5,12 +5,16 @@ package com.wow.battlebirds.game;
  */
 public class Cannon {
     //Random Angle calibration
+    public final float Velocity = 20;
     public float angle;
     public int ammo;
     public int xPos;
     public int yPos;
     public float randomNum;
     public int player;
+    public float Vx;
+    public float Vy;
+
 
 
     Cannon(int player){
@@ -38,7 +42,9 @@ public class Cannon {
     }
 
     public void launchBird(){
-
-        Bird projectile = new Bird(player, angle, xPos, yPos);
+        Bird projectile = new Bird(player, angle);
+        Vx = Velocity * (float)Math.cos(angle);
+        Vy = Velocity * (float)Math.sin(angle);
+        projectile.launch(Vx, Vy, xPos, yPos);
     }
 }
