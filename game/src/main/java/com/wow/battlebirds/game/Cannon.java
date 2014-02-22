@@ -7,22 +7,22 @@ public class Cannon {
     //Random Angle calibration
     public float angle;
     public int ammo;
-    public float xPos;
+    public int xPos;
+    public int yPos;
     public float randomNum;
     public int player;
 
 
     Cannon(int player){
+        ammo = 10;
+        yPos = 100;
+        cannonCalibration();
         switch (player){
             case 1: xPos = 100; //XPOS RELATIVE TO 1000 PIXELS IN THE X AXIS
-                    ammo = 10;
-                    cannonCalibration();
                     //RENDER PLAYER1 HERE
                     break;
 
             case 2: xPos = 900; //XPOS RELATIVE TO 1000 PIXELS IN THE X AXIS
-                    ammo = 10;
-                    cannonCalibration();
                     //RENDER PLAYER2 HERE
                     break;
         }
@@ -38,6 +38,7 @@ public class Cannon {
     }
 
     public void launchBird(){
-        Bird projectile = new Bird(player, angle);
+
+        Bird projectile = new Bird(player, angle, xPos, yPos);
     }
 }
