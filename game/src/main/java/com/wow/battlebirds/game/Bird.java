@@ -13,6 +13,7 @@ public class Bird {
     public int eggYPos;
 
 
+
     Bird(int team, float angle, int xPos, int yPos){
         Vx = Velocity * (float)Math.cos(angle);
         Vy = Velocity * (float)Math.sin(angle);
@@ -25,6 +26,19 @@ public class Bird {
             case 2: //RENDER BIRD(BLUE)
                     break;
         }
+    }
+    public void launch(float Vix, float Viy, float xPos, float yPos){
+
+        while(eggYPos > 100){
+            //int t = (int)(2*Viy/9.8);
+            eggXPos += Vix;
+            eggYPos += Viy;
+            Viy += -9.8;
+        }
+    }
+
+    public void updateBird(){
+
     }
 
 }
