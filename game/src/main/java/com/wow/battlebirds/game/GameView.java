@@ -49,12 +49,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             }
         }
-
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return super.onTouchEvent(event);
     }
+
     @Override
     protected void onDraw(Canvas canvas)
     {
