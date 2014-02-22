@@ -9,8 +9,7 @@ public class Block extends Asset {
     public int length;
     public int height;
     public int numBlocks = 15;
-    public int xPos;
-    public int yPos;
+    public Point point;
     public int Vy;
 
     Block(int xPos, int yPos){
@@ -18,7 +17,6 @@ public class Block extends Asset {
             int length = 20;
             int height = 20;
             numBlocks--;
-
         } else {
             System.out.println("Max Blocks Reached");
         }
