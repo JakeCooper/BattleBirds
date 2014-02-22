@@ -35,7 +35,7 @@
             android:name=".GameActivity"
             android:screenOrientation="portrait"
             android:uiOptions="none"
-            android:windowSoftInputMode="stateAlwaysVisible">
+            android:parentActivityName="com.wow.battlebirds.game.MenuActivity">
         </activity>
     </application>
 

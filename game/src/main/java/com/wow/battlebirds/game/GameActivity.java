@@ -9,7 +9,7 @@ import android.view.WindowManager;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public abstract class GameActivity extends Activity implements Game {
+public class GameActivity extends Activity implements Game {
 
     GameView renderView;
     Input input;
