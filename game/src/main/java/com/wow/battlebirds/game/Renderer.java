@@ -8,7 +8,7 @@ import android.graphics.Paint;
 public interface Renderer
 {
 
-    public Image newImage();
+    public Image newImage(String file);
 
     public void clearScreen();
 
