@@ -2,6 +2,7 @@ package com.wow.battlebirds.game;
 
 import android.view.MotionEvent;
 import android.view.View;
+import android.graphics.Point;
 
 
 /**
@@ -21,16 +22,18 @@ public abstract class touchScreen implements Input{
     public boolean onTouch(View v, MotionEvent event){
         dx = (int)event.getRawX();
         dy = (int)event.getRawY();
+        Point p = new Point(dx, dy);
 
         if(event.getAction() == MotionEvent.ACTION_UP){
 
             // Makes a new Box
             if(event.getRawX() == getMotionEvents().peek().getRawX() || event.getRawY() == getMotionEvents().peek().getRawX() ){
-                Block b = new Block(dx,dy);
+
+                Block b = new Block(p);
 
             // Fires the cannon
-            }else if(event.getRawX() == cannon.xPos || event.getRawY() == cannon.yPos ){
-                Bird projectile = new Bird(cannon.player, cannon.angle);
+            }else if(p == cannon.position ){
+                Bird projectile = new Bird(cannon.team, cannon.angle);
 
             // Moves the cannon
             }else if(event.getRawX() != dx || event.getRawY() != dy ){

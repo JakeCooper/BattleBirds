@@ -9,8 +9,8 @@ import android.graphics.Point;
 public class Block extends Asset {
 
 
-    Block(Point createPosition, int length, int height){
-        super(createPosition, length, height);
+    Block(Point createPosition){
+        super(createPosition, 10, 10);
 
     }/*BlockConstructor*/
 
