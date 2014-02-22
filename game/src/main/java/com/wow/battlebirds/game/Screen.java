@@ -3,7 +3,8 @@ package com.wow.battlebirds.game;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public abstract class Screen {
+public abstract class Screen
+{
 
     protected final Game game;
 

@@ -12,11 +12,13 @@ import android.content.Context;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class AndroidIO implements FileIO {
+public class AndroidIO implements FileIO
+{
 
     Context context;
 
-    public AndroidIO(Context context) {
+    public AndroidIO(Context context)
+    {
         this.context = context;
     }
 

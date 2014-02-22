@@ -5,7 +5,8 @@ import android.graphics.Paint;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public interface Renderer {
+public interface Renderer
+{
 
     public Image newImage();
 

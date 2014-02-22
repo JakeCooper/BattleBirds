@@ -12,10 +12,12 @@ import android.content.Intent;
 /**
  * Created by kisselev on 22/02/14.
  */
-public class MenuActivity extends Activity {
+public class MenuActivity extends Activity
+{
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -28,7 +30,8 @@ public class MenuActivity extends Activity {
     }
 
     /** Called when the user touches the button */
-    public void runGame(View view) {
+    public void runGame(View view)
+    {
 
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
