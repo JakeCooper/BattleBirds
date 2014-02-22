@@ -15,9 +15,9 @@
             android:launchMode="singleInstance"
             android:multiprocess="true"
             android:name=".MenuActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:uiOptions="none"
-            android:windowSoftInputMode="stateAlwaysVisible">
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -33,7 +33,7 @@
             android:launchMode="singleInstance"
             android:multiprocess="true"
             android:name=".GameActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:uiOptions="none"
             android:parentActivityName="com.wow.battlebirds.game.MenuActivity">
         </activity>
