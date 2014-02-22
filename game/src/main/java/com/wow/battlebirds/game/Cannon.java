@@ -24,8 +24,6 @@ public class Cannon {
                     cannonCalibration();
                     //RENDER PLAYER2 HERE
                     break;
-
-
         }
     }
 

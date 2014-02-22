@@ -8,7 +8,7 @@ public class Bird {
     public float VelocityY;
     public int team;
 
-    Bird(){
+    Bird(int team){
 
     }
 

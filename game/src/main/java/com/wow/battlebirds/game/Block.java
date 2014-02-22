@@ -13,8 +13,10 @@ public class Block {
             int length = 20;
             int height = 20;
         } else {
-            System.out.println("Max Blocks reached");
+            System.out.println("Max Blocks Reached");
         }
     }/*BlockConstructor*/
+
+    
 
 }/*BlockClass*/
