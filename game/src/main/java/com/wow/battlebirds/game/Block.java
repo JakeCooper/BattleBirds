@@ -8,17 +8,24 @@ import android.view.Gravity;
 public class Block extends Asset {
     public int length;
     public int height;
-    public Point position;
-    public Point[] points;
+    public int numBlocks = 15;
+    public int xPos;
+    public int yPos;
     public int Vy;
-    public int team;
 
-    Block(){
-        this.points = GetPoints();
+    Block(int xPos, int yPos){
+        if(numBlocks > 0){
+            int length = 20;
+            int height = 20;
+            numBlocks--;
 
+        } else {
+            System.out.println("Max Blocks Reached");
+        }
+        Point point = new Point(xPos, yPos);
         //GET INPUT AND CONVERT TO YPOS AND XPOS!
-        if(position.y < 100) position.y = 100;
-        while(position.y > 100) position.y--; //Dat Gravity
+        if(yPos < 100) yPos = 100;
+        while(yPos > 100) yPos--; //Dat Gravity
 
 
     }/*BlockConstructor*/
