@@ -22,8 +22,10 @@ public class Block {
         } else {
             System.out.println("Max Blocks Reached");
         }
-
+        //GET INPUT AND CONVERT TO YPOS AND XPOS!
+        if(yPos < 100) yPos = 100;
         while(yPos > 100) yPos--; //Dat Gravity
+
 
     }/*BlockConstructor*/
 
