@@ -9,7 +9,7 @@ public class Bird {
     public int team;
 
     Bird(){
-        
+
     }
 
 }

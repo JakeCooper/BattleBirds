@@ -10,12 +10,32 @@ public class Cannon {
     public float xPos;
     public float randomNum;
 
-    Cannon(){
 
+    Cannon(int player){
+        switch (player){
+            case 1: xPos = 100; //XPOS RELATIVE TO 1000 PIXELS IN THE X AXIS
+                    ammo = 10;
+                    cannonCalibration();
+                    //RENDER PLAYER1 HERE
+                    break;
+
+            case 2: xPos = 900; //XPOS RELATIVE TO 1000 PIXELS IN THE X AXIS
+                    ammo = 10;
+                    cannonCalibration();
+                    //RENDER PLAYER2 HERE
+                    break;
+
+
+        }
     }
 
-    public void cannonCalibration(Cannon Cannon){
+    public void cannonCalibration(){
         //Check random to see if True random or Pseudo random (Seed?)
-        Cannon.angle = 15 + (int)(Math.random()*((75 - 15) + 1));
+        angle = 15 + (int)(Math.random()*((75 - 15) + 1));
+    }
+
+    public void ammoReset(Cannon Cannon){
+        //Check random to see if True random or Pseudo random (Seed?)
+        Cannon.ammo = 10;
     }
 }
