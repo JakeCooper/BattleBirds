@@ -1,7 +1,10 @@
 package com.wow.battlebirds.game;
 
+import java.util.List;
+
 /**
- * Created by ChrisH on 22/02/14.
+ * Created by Andrew on 22/02/14.
+ * For keeping up with touch events
  */
 public interface Input {
 
@@ -14,6 +17,7 @@ public interface Input {
         public int type;
         public int x, y;
         public int pointer;
+
     }
 
     public boolean isTouchDown(int pointer);
@@ -21,4 +25,7 @@ public interface Input {
     public int getTouchX(int pointer);
 
     public int getTouchY(int pointer);
+
+    public List<TouchEvent> getTouchEvents();
 }
+

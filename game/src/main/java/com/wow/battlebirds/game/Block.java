@@ -6,15 +6,18 @@ package com.wow.battlebirds.game;
 public class Block {
     public int length;
     public int height;
-    public int numBlocks;
+    public int numBlocks = 15;
 
     Block(){
         if(numBlocks > 0){
             int length = 20;
             int height = 20;
+            numBlocks--;
         } else {
-            System.out.println("Max Blocks reached");
+            System.out.println("Max Blocks Reached");
         }
     }/*BlockConstructor*/
+
+
 
 }/*BlockClass*/
