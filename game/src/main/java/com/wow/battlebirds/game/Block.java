@@ -1,6 +1,7 @@
 package com.wow.battlebirds.game;
 
 import android.view.Gravity;
+import android.graphics.Point;
 
 /**
  * Created by Jake on 22/02/14.
@@ -8,26 +9,28 @@ import android.view.Gravity;
 public class Block extends Asset {
     public int length;
     public int height;
-    public int numBlocks = 15;
-    public int xPos;
-    public int yPos;
-    public int Vy;
+    public Point position;
+    public Point[] corners;
 
-    Block(int xPos, int yPos){
-        if(numBlocks > 0){
-            int length = 20;
-            int height = 20;
-            numBlocks--;
+    Block(Point createPosition, int length, int height){
+        this.position = createPosition;
+        this.length = length;
+        this.height = height;
 
-        } else {
-            System.out.println("Max Blocks Reached");
-        }
-        Point point = new Point(xPos, yPos);
-        if(point.y < 100) point.y = 100;
-        while(point.y > 100) point.y--; //Dat Gravity
+        this.corners = GetPoints();
 
 
     }/*BlockConstructor*/
+
+    public Point[] GetPoints() {
+        Point Tl = new Point((this.position.x - (this.length / 2)), (this.position.y + this.height / 2));
+        Point Tr = new Point((this.position.x + (this.length / 2)), (this.position.y + this.height / 2));
+        Point Bl = new Point((this.position.x - (this.length / 2)), (this.position.y - this.height / 2));
+        Point Br = new Point((this.position.x + (this.length / 2)), (this.position.y - this.height / 2));
+
+        Point[] BlockPoints = {Tl, Tr, Bl, Br};
+
+        return BlockPoints;
 
     @Override
     public void update(float deltaT)

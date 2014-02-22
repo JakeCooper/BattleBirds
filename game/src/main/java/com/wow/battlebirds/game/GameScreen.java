@@ -1,5 +1,8 @@
 package com.wow.battlebirds.game;
 
+import java.util.List;
+import java.util.ListIterator;
+
 /**
  * Created by ChrisH on 22/02/14.
  */
@@ -11,9 +14,13 @@ public class GameScreen extends Screen
     }
 
     @Override
-    public void update()
+    public void update(float deltaTime)
     {
-
+        List<Asset> assets = game.getAssetFactory().retrieveAssets();
+        for (ListIterator<Asset> iter = assets.listIterator(); iter.hasNext(); ) {
+            Asset asset = iter.next();
+            asset.update(deltaTime);
+        }
     }
 
     @Override
