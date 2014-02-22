@@ -47,4 +47,10 @@ public class Cannon extends Asset {
         Vy = Velocity * (float)Math.sin(angle);
         projectile.launch(Vx, Vy, xPos, yPos);
     }
+
+    @Override
+    public void update(float deltaT)
+    {
+
+    }
 }

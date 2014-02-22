@@ -23,6 +23,10 @@ public class Block extends Asset {
 
     }/*BlockConstructor*/
 
+    @Override
+    public void update(float deltaT)
+    {
 
+    }
 
 }/*BlockClass*/

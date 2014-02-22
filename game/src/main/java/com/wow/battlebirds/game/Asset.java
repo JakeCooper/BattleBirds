@@ -7,4 +7,6 @@ public abstract class Asset
 {
     public Image image;
     public Sound sound;
+
+    public abstract void update(float deltaT);
 }
