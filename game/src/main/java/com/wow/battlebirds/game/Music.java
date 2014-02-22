@@ -3,7 +3,8 @@ package com.wow.battlebirds.game;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public interface Music {
+public interface Music
+{
 
     public void play();
 

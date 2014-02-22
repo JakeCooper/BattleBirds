@@ -3,7 +3,7 @@ package com.wow.battlebirds.game;
 /**
  * Created by Jake on 22/02/14.
  */
-public class Cannon {
+public class Cannon extends Asset {
     //Random Angle calibration
     public float angle;
     public int ammo;

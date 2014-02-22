@@ -3,7 +3,8 @@ package com.wow.battlebirds.game;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class GameScreen extends Screen {
+public class GameScreen extends Screen
+{
 
     public GameScreen(Game game)
     {
