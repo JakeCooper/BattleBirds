@@ -2,6 +2,7 @@ package com.wow.battlebirds.game;
 
 import java.util.List;
 import java.util.ListIterator;
+import android.graphics.Point;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -17,7 +18,7 @@ public class GameScreen extends Screen
         super(game);
         state = GameState.STATE_INIT;
 
-        Block block = new Block(new android.graphics.Point(0, 0), 0, 0);
+        Block block = new Block(new Point(0, 0));
         block.image = game.getRenderer().newImage("block.bmp");
         game.getAssetFactory().addAsset(block);
 
