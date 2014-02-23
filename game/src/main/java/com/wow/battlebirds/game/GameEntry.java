@@ -34,6 +34,16 @@ public class GameEntry extends Thread {
             this.running = running;
     }
 
+    public void pause()
+    {
+        running = false;
+    }
+
+    public void unpause()
+    {
+        running = true;
+    }
+
     @Override
     public void run()
     {
