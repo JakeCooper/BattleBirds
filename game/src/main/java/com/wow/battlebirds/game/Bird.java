@@ -1,5 +1,7 @@
 package com.wow.battlebirds.game;
 
+import android.graphics.Point;
+
 /**
  * Created by Jake on 22/02/14.
  */
@@ -12,18 +14,11 @@ public class Bird extends Asset {
     public int eggXPos;
     public int eggYPos;
 
+    Bird(Point createPosition, int Velocity, float angle){
+        super(createPosition, 20, 20);
 
-
-    Bird(int team, float angle){
         Vx = Velocity * (float)Math.cos(angle);
         Vy = Velocity * (float)Math.sin(angle);
-        switch (team){
-            case 1: //RENDER BIRD(RED)
-                    break;
-
-            case 2: //RENDER BIRD(BLUE)
-                    break;
-        }
     }
     public void launch(float Vix, float Viy, Point point){
 
