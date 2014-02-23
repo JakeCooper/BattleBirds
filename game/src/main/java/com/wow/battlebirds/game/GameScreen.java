@@ -29,8 +29,9 @@ public class GameScreen extends Screen
 
         map = new Map();
         map.image = game.getRenderer().newImage("Background2.png");
+        map.setOffset(-1000);
 
-        redCannon = new Cannon(new Point(40,40), 20, 0);
+        redCannon = new Cannon(new Point(40,720-302), 20, 0);
         redCannon.image = game.getRenderer().newImage("cannon_chassis2.png");
         redBarrel = game.getRenderer().newImage("cannon_main2.png");
 
@@ -66,10 +67,9 @@ public class GameScreen extends Screen
             game.getRenderer().drawImage(map.image, map.getOffset(), 0);
 
             game.getRenderer().drawImage(redCannon.image, redCannon.position.x, redCannon.position.y);
-            game.getRenderer().drawImage(redBarrel, redCannon.position.x+67, redCannon.position.y+12);
+            game.getRenderer().drawImage(redBarrel, redCannon.position.x+138, redCannon.position.y+110);
             game.getRenderer().drawImage(blueCannon.image, blueCannon.position.x, blueCannon.position.y);
             game.getRenderer().drawImage(blueBarrel, blueCannon.position.x+67, blueCannon.position.y+12);
-
 
             List<Asset> assets = game.getAssetFactory().retrieveAssets();
             for (ListIterator<Asset> iter = assets.listIterator(); iter.hasNext(); )

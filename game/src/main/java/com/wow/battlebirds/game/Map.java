@@ -19,6 +19,11 @@ public class Map extends Asset {
         offsetX += newOffset;
     }
 
+    void setOffset(int newOffset)
+    {
+        offsetX = newOffset;
+    }
+
     int getOffset()
     {
         return offsetX;
