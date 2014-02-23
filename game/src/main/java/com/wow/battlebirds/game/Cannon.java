@@ -14,8 +14,8 @@ public class Cannon extends Asset {
     public float Vx;
     public float Vy;
 
-    private final int length = 120; //Hardcoded sizes for the cannon
-    private final int height = 60;
+    private final int length = 20; //Hardcoded sizes for the cannon
+    private final int height = 20;
 
     Cannon(Point createPosition, int ammo, int player){
         super(createPosition, 50, 50);
@@ -30,15 +30,10 @@ public class Cannon extends Asset {
 
     }
 
-    public void cannonRotationUp(){
-        if(angle > 0 && angle < 90){
-            angle += 0.00001;
-        }
-    }
 
-    public void cannonRotationDown(){
+    public void cannonRotation(int direction){
         if(angle > 0 && angle < 90){
-            angle -= 0.00001;
+            angle += direction;
         }
     }
 
