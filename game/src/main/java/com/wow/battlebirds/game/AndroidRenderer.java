@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Rect;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -20,6 +21,8 @@ public class AndroidRenderer implements Renderer {
     private AssetManager assets;
     private Game game;
     private Canvas canvas;
+    Rect srcRect = new Rect();
+    Rect dstRect = new Rect();
 
     public AndroidRenderer(Game game, AssetManager assets, Bitmap frameBuffer)
     {
@@ -32,7 +35,7 @@ public class AndroidRenderer implements Renderer {
     public Image newImage(String file)
     {
         Options options = new Options();
-        options.inPreferredConfig = Config.ARGB_4444;
+        options.inPreferredConfig = Config.ARGB_8888;
 
         InputStream in = null;
         Bitmap bitmap = null;
@@ -61,9 +64,11 @@ public class AndroidRenderer implements Renderer {
         return new AndroidImage(bitmap);
     }
 
-    public void clearScreen()
+    @Override
+    public void clearScreen(int colour)
     {
-
+        canvas.drawRGB((colour & 0xff0000) >> 16, (colour & 0xff00) >> 8,
+                (colour & 0xff));
     }
 
     public void drawLine()
@@ -82,6 +87,21 @@ public class AndroidRenderer implements Renderer {
         canvas.drawBitmap(img.getBitmap(), x, y, null);
     }
 
+    @Override
+    public void drawImageScaled(Image img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight)
+    {
+        srcRect.left = srcX;
+        srcRect.top = srcY;
+        srcRect.right = srcX + srcWidth;
+        srcRect.bottom = srcY + srcHeight;
+
+        dstRect.left = x;
+        dstRect.top = y;
+        dstRect.right = x + width;
+        dstRect.bottom = y + height;
+
+        canvas.drawBitmap(img.getBitmap(), srcRect, dstRect, null);
+    }
     public void drawString(String str, Paint paint)
     {
 
