@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.content.res.Configuration;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -29,13 +30,19 @@ public class GameActivity extends Activity implements Game {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Bitmap frameBuffer = Bitmap.createBitmap(1280,720, Config.RGB_565);
+        Boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
+        int frameBufferWidth = isPortrait ? 800: 1280;
+        int frameBufferHeight = isPortrait ? 1280: 800;
 
+        Bitmap frameBuffer = Bitmap.createBitmap(frameBufferWidth,frameBufferHeight, Config.ARGB_8888);
+
+//        input = new touchScreen();
         assets = new AssetFactory();
         renderer = new AndroidRenderer(this, getAssets(), frameBuffer);
         fileIO = new AndroidIO(this);
         renderView = new GameView(this, this, frameBuffer);
+        renderView.setOnTouchListener(input);
         setContentView(renderView);
         setScreen(new GameScreen(this));
 

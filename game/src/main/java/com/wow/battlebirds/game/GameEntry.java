@@ -43,7 +43,7 @@ public class GameEntry extends Thread {
             float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
 
-//            gamePanel.game.getRenderer().clearScreen();
+            gamePanel.game.getRenderer().clearScreen(0);
 
             gamePanel.game.getCurrentScreen().update(deltaTime);
             gamePanel.game.getCurrentScreen().draw();
