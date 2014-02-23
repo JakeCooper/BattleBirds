@@ -30,6 +30,18 @@ public class Cannon extends Asset {
 
     }
 
+    public void cannonRotationUp(){
+        if(angle > 0 && angle < 90){
+            angle += 1;
+        }
+    }
+
+    public void cannonRotationDown(){
+        if(angle > 0 && angle < 90){
+            angle -= 1;
+        }
+    }
+
     public void ammoReset(){
         ammo = 10;
     }
