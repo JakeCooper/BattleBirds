@@ -14,8 +14,8 @@ public class Cannon extends Asset {
     public float Vx;
     public float Vy;
 
-    private final int length = 20; //Hardcoded sizes for the cannon
-    private final int height = 20;
+    private final int length = 120; //Hardcoded sizes for the cannon
+    private final int height = 60;
 
     Cannon(Point createPosition, int ammo, int player){
         super(createPosition, 50, 50);
