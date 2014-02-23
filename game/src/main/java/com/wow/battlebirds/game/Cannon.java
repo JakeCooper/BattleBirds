@@ -30,15 +30,10 @@ public class Cannon extends Asset {
 
     }
 
-    public void cannonRotationUp(){
-        if(angle > 0 && angle < 90){
-            angle += 1;
-        }
-    }
 
-    public void cannonRotationDown(){
+    public void cannonRotation(int direction){
         if(angle > 0 && angle < 90){
-            angle -= 1;
+            angle += direction;
         }
     }
 
