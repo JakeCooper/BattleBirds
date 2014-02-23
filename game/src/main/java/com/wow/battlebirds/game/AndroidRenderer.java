@@ -24,7 +24,8 @@ public class AndroidRenderer implements Renderer {
     public AndroidRenderer(Game game, AssetManager assets, Bitmap frameBuffer)
     {
         this.game = game;
-        this.framebuffer = framebuffer;
+        this.assets = assets;
+        this.framebuffer = frameBuffer;
         canvas = new Canvas(framebuffer);
     }
 
@@ -38,6 +39,9 @@ public class AndroidRenderer implements Renderer {
 
         try {
             in = assets.open(file);
+            if(in == null)
+                throw new RuntimeException("Unable to find asset named '"
+                        + file + "'");
             bitmap = BitmapFactory.decodeStream(in, null, options);
             if(bitmap == null)
                 throw new RuntimeException("Couldn't load bitmap from asset '"

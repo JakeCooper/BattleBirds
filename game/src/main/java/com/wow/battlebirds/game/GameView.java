@@ -14,14 +14,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameEntry thread;
     private Bitmap framebuffer;
+    public Game game;
 
-    public GameView(Context context, Bitmap framebuffer)
+    public GameView(Context context, Game game, Bitmap framebuffer)
     {
         super(context);
         getHolder().addCallback(this);
-
         thread = new GameEntry(getHolder(), this);
         this.framebuffer = framebuffer;
+        this.game = game;
 
         setFocusable(true);
     }

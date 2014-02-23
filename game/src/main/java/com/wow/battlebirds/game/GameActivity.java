@@ -31,8 +31,11 @@ public class GameActivity extends Activity implements Game {
 
         Bitmap frameBuffer = Bitmap.createBitmap(1280,720, Config.RGB_565);
 
+
         assets = new AssetFactory();
-        renderView = new GameView(this, frameBuffer);
+        renderer = new AndroidRenderer(this, getAssets(), frameBuffer);
+        fileIO = new AndroidIO(this);
+        renderView = new GameView(this, this, frameBuffer);
         setContentView(renderView);
         setScreen(new GameScreen(this));
 

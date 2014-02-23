@@ -32,20 +32,26 @@ public class GameEntry extends Thread {
     @Override
     public void run()
     {
-        long tickCount = 0L;
         Rect dstRect = new Rect();
+        long startTime = System.nanoTime();
 
         while (running)
         {
             if(!gamePanel.getHolder().getSurface().isValid())
                 continue;
 
+            float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
+            startTime = System.nanoTime();
+
+//            gamePanel.game.getRenderer().clearScreen();
+
+            gamePanel.game.getCurrentScreen().update(deltaTime);
+            gamePanel.game.getCurrentScreen().draw();
+
             Canvas canvas = gamePanel.getHolder().lockCanvas();
             canvas.getClipBounds(dstRect);
             canvas.drawBitmap(gamePanel.getFramebuffer(), null, dstRect, null);
             gamePanel.getHolder().unlockCanvasAndPost(canvas);
-
-            tickCount++;
         }
     }
 }
