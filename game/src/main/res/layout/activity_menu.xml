@@ -21,8 +21,8 @@
 
 
         <Button
-            android:layout_width="123dp"
-            android:layout_height="30.6dp"
+            android:layout_width="152dp"
+            android:layout_height="53dp"
             android:id="@+id/QuickPlayButton"
             android:background="@drawable/start"
             android:onClick="runGame" />
