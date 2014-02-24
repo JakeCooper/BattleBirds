@@ -16,7 +16,8 @@ public class Block extends Asset {
 
     public void update(float deltaT)
     {
-
+        if(position.y < 550)
+            position.y += 10;
     }
 
 }/*BlockClass*/

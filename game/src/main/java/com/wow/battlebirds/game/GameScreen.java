@@ -78,7 +78,7 @@ public class GameScreen extends Screen
 
                 int x = (int)(Math.random() * ((800 - 0) + 1));
                 int y = (int)(Math.random() * ((800 - 0) + 1));
-//                game.getRenderer().drawImage(asset.image, x, y);
+                game.getRenderer().drawImage(asset.image, asset.position.x, asset.position.y);
 //                    game.getRenderer().drawImageScaled(asset.image, x, y, asset.image.getWidth(), asset.image.getHeight(), x, y, asset.image.getWidth(), asset.image.getHeight());
                 tickCount = 0;
             }

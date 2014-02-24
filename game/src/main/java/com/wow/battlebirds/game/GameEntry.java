@@ -22,6 +22,9 @@ public class GameEntry extends Thread {
     private boolean running;
     private touchScreen events;
 
+    MotionEvent upEvent = null;
+    MotionEvent downEvent = null;
+
     public GameEntry(SurfaceHolder surfaceHolder, GameView gamePanel)
     {
         super();
@@ -49,7 +52,6 @@ public class GameEntry extends Thread {
     {
         Rect dstRect = new Rect();
         long startTime = System.nanoTime();
-        events = new touchScreen();
         while (running)
         {
             if(!gamePanel.getHolder().getSurface().isValid())
@@ -57,23 +59,36 @@ public class GameEntry extends Thread {
 
             // Traverses all the current touch events
 
-            Queue<MotionEvent> eventlist = events.getMotionEvents();
-            MotionEvent upEvent;
-            MotionEvent downEvent;
+            Queue<MotionEvent> eventlist = gamePanel.game.getInput().getMotionEvents();
+            touchScreen input = (touchScreen)gamePanel.game.getInput();
 
-            while(eventlist.peek() != null){
+            for(java.util.Iterator<MotionEvent> iter = eventlist.iterator(); iter.hasNext(); )
+            {
+                MotionEvent event = eventlist.peek();
 
-                if(eventlist.peek().getAction() == MotionEvent.ACTION_UP){
-                    upEvent = eventlist.remove();
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
                     downEvent = eventlist.remove();
+
+                    Block b = new Block(new Point((int)(downEvent.getX() * input.scaleX), (int)(downEvent.getY() * input.scaleY)));
+                    b.image = gamePanel.game.getRenderer().newImage("Box2.png");
+                    gamePanel.game.getAssetFactory().addAsset(b);
+                }
+               else  if(event.getAction() == MotionEvent.ACTION_UP){
+                    upEvent = eventlist.remove();
+                }
+                else
+                    eventlist.remove();
+                /*
+                if(upEvent != null && downEvent != null)
+                {
                     int diff = (int)(upEvent.getRawY() - downEvent.getRawY());
                     GameScreen screen = (GameScreen)gamePanel.game.getCurrentScreen();
-
 
                     // Create a new Block
                     if(downEvent.getRawX() == upEvent.getRawX() || downEvent.getRawY() == upEvent.getRawY() ){
 
                         Block b = new Block(new Point((int)upEvent.getRawX(), (int)downEvent.getRawY()));
+                        b.image = gamePanel.game.getRenderer().newImage("Box2.png");
                         gamePanel.game.getAssetFactory().addAsset(b);
 
 
@@ -94,9 +109,13 @@ public class GameEntry extends Thread {
                         }
                     }
 
+                    upEvent = null;
+                    downEvent = null;
+
                 }else{
                     continue;
                 }
+                */
 
             }
 

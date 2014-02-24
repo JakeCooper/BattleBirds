@@ -35,9 +35,14 @@ public class GameActivity extends Activity implements Game {
         int frameBufferWidth = isPortrait ? 720: 1280;
         int frameBufferHeight = isPortrait ? 1280: 720;
 
+        float scaleX = (float) frameBufferWidth
+                / getWindowManager().getDefaultDisplay().getWidth();
+        float scaleY = (float) frameBufferHeight
+                / getWindowManager().getDefaultDisplay().getHeight();
+
         Bitmap frameBuffer = Bitmap.createBitmap(frameBufferWidth,frameBufferHeight, Config.ARGB_8888);
 
-//        input = new touchScreen();
+        input = new touchScreen(scaleX, scaleY);
         assets = new AssetFactory();
         renderer = new AndroidRenderer(this, getAssets(), frameBuffer);
         fileIO = new AndroidIO(this);
