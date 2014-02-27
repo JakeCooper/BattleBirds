@@ -13,6 +13,7 @@ import com.wow.battlebirds.engine.input.ITouchInput;
 import com.wow.battlebirds.engine.input.touchScreen;
 import com.wow.battlebirds.engine.io.AndroidIO;
 import com.wow.battlebirds.engine.io.IFileIO;
+import com.wow.battlebirds.engine.renderer.RenderView;
 import com.wow.battlebirds.engine.renderer.Renderer;
 import com.wow.battlebirds.engine.renderer.IRenderer;
 import com.wow.battlebirds.engine.sound.IAudio;
@@ -23,7 +24,7 @@ import com.wow.battlebirds.game.GameScreen;
  */
 public class BaseActivity extends Activity implements EngineInterface
 {
-    GameView renderView;
+    RenderView renderView;
     ITouchInput input;
     IFileIO fileIO;
     IRenderer renderer;
@@ -56,7 +57,7 @@ public class BaseActivity extends Activity implements EngineInterface
         assets = new AssetFactory();
         renderer = new Renderer(this, getAssets(), frameBuffer);
         fileIO = new AndroidIO(this);
-        renderView = new GameView(this, this, frameBuffer);
+        renderView = new RenderView(this, this, frameBuffer);
         renderView.setOnTouchListener(input);
         setContentView(renderView);
         setScreen(new GameScreen(this));

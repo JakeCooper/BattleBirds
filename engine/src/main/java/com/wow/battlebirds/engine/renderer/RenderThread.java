@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -14,21 +14,21 @@ import com.wow.battlebirds.game.Block;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class GameEntry extends Thread {
+public class RenderThread extends Thread {
 
     private SurfaceHolder surfaceHolder;
-    private GameView gamePanel;
+    private RenderView view;
 
     private boolean running;
 
     MotionEvent upEvent = null;
     MotionEvent downEvent = null;
 
-    public GameEntry(SurfaceHolder surfaceHolder, GameView gamePanel)
+    public RenderThread(SurfaceHolder surfaceHolder, RenderView view)
     {
         super();
         this.surfaceHolder = surfaceHolder;
-        this.gamePanel = gamePanel;
+        this.view = view;
     }
 
     public void setRunning(boolean running)
@@ -58,8 +58,8 @@ public class GameEntry extends Thread {
 
             // Traverses all the current touch events
 
-            Queue<MotionEvent> eventlist = gamePanel.engine.getInput().getMotionEvents();
-            touchScreen input = (touchScreen)gamePanel.engine.getInput();
+            Queue<MotionEvent> eventlist = view.engine.getInput().getMotionEvents();
+            touchScreen input = (touchScreen) view.engine.getInput();
 
             for(java.util.Iterator<MotionEvent> iter = eventlist.iterator(); iter.hasNext(); )
             {
@@ -69,8 +69,8 @@ public class GameEntry extends Thread {
                     downEvent = eventlist.remove();
 
                     Block b = new Block(new Point((int)(downEvent.getX() * input.scaleX), (int)(downEvent.getY() * input.scaleY)));
-                    b.image = gamePanel.engine.getRenderer().newImage("Box2.png");
-                    gamePanel.engine.getAssetFactory().addAsset(b);
+                    b.image = view.engine.getRenderer().newImage("Box2.png");
+                    view.engine.getAssetFactory().addAsset(b);
                 }
                else  if(event.getAction() == MotionEvent.ACTION_UP){
                     upEvent = eventlist.remove();
@@ -81,20 +81,20 @@ public class GameEntry extends Thread {
                 if(upEvent != null && downEvent != null)
                 {
                     int diff = (int)(upEvent.getRawY() - downEvent.getRawY());
-                    GameScreen screen = (GameScreen)gamePanel.engine.getCurrentScreen();
+                    GameScreen screen = (GameScreen)view.engine.getCurrentScreen();
 
                     // Create a new Block
                     if(downEvent.getRawX() == upEvent.getRawX() || downEvent.getRawY() == upEvent.getRawY() ){
 
                         Block b = new Block(new Point((int)upEvent.getRawX(), (int)downEvent.getRawY()));
-                        b.image = gamePanel.engine.getRenderer().newImage("Box2.png");
-                        gamePanel.engine.getAssetFactory().addAsset(b);
+                        b.image = view.engine.getRenderer().newImage("Box2.png");
+                        view.engine.getAssetFactory().addAsset(b);
 
 
                     // Fires the cannon
                     }else if(new Point((int)downEvent.getRawX(), (int)upEvent.getRawY()) == screen.redCannon.position ){
                             Bird projectile = new Bird(screen.redCannon.position,20, (int)screen.redCannon.angle);
-                            gamePanel.engine.getAssetFactory().addAsset(projectile);
+                            view.engine.getAssetFactory().addAsset(projectile);
 
                     // Moves the cannon
                     }else if(upEvent.getRawX() != downEvent.getRawX()){
@@ -121,20 +121,20 @@ public class GameEntry extends Thread {
             float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
 
-            gamePanel.engine.getRenderer().clearScreen(0);
+            view.engine.getRenderer().clearScreen(0);
 
-            gamePanel.engine.getCurrentScreen().update(deltaTime);
-            gamePanel.engine.getCurrentScreen().draw();
+            view.engine.getCurrentScreen().update(deltaTime);
+            view.engine.getCurrentScreen().draw();
 
             Canvas canvas = this.surfaceHolder.lockCanvas();
 
             if(canvas != null)
             {
                 canvas.getClipBounds(dstRect);
-                canvas.drawBitmap(gamePanel.getFramebuffer(), null, dstRect, null);
-            }
+                canvas.drawBitmap(view.getFramebuffer(), null, dstRect, null);
 
-            this.surfaceHolder.unlockCanvasAndPost(canvas);
+                this.surfaceHolder.unlockCanvasAndPost(canvas);
+            }
         }
     }
 }

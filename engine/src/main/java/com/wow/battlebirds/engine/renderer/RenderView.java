@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.renderer;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,24 +6,26 @@ import android.graphics.Bitmap;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.wow.battlebirds.engine.EngineInterface;
+
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class GameView extends SurfaceView implements SurfaceHolder.Callback {
+public class RenderView extends SurfaceView implements SurfaceHolder.Callback {
 
-    private GameEntry thread;
+    private RenderThread thread;
     private Bitmap framebuffer;
     public EngineInterface engine;
 
-    public GameView(Context context, EngineInterface engine, Bitmap framebuffer)
+    public RenderView(Context context, EngineInterface engine, Bitmap framebuffer)
     {
         super(context);
-        getHolder().addCallback(this);
-        thread = new GameEntry(getHolder(), this);
+        this.getHolder().addCallback(this);
+        this.thread = new RenderThread(getHolder(), this);
         this.framebuffer = framebuffer;
         this.engine = engine;
 
-        setFocusable(true);
+        this.setFocusable(true);
     }
 
     public Bitmap getFramebuffer()
