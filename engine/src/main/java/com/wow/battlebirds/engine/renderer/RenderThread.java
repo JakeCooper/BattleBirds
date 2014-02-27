@@ -5,9 +5,11 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
+import java.util.Iterator;
 import java.util.Queue;
 import android.graphics.Point;
 
+import com.wow.battlebirds.engine.Engine;
 import com.wow.battlebirds.engine.input.touchScreen;
 import com.wow.battlebirds.game.Block;
 
@@ -17,18 +19,18 @@ import com.wow.battlebirds.game.Block;
 public class RenderThread extends Thread {
 
     private SurfaceHolder surfaceHolder;
-    private RenderView view;
+    private Engine engine;
 
     private boolean running;
 
     MotionEvent upEvent = null;
     MotionEvent downEvent = null;
 
-    public RenderThread(SurfaceHolder surfaceHolder, RenderView view)
+    public RenderThread(SurfaceHolder surfaceHolder, Engine engine)
     {
         super();
         this.surfaceHolder = surfaceHolder;
-        this.view = view;
+        this.engine = engine;
     }
 
     public void setRunning(boolean running)
@@ -58,10 +60,10 @@ public class RenderThread extends Thread {
 
             // Traverses all the current touch events
 
-            Queue<MotionEvent> eventlist = view.engine.getInput().getMotionEvents();
-            touchScreen input = (touchScreen) view.engine.getInput();
+            Queue<MotionEvent> eventlist = engine.getInput().getMotionEvents();
+            touchScreen input = (touchScreen) engine.getInput();
 
-            for(java.util.Iterator<MotionEvent> iter = eventlist.iterator(); iter.hasNext(); )
+            for(Iterator<MotionEvent> iter = eventlist.iterator(); iter.hasNext(); )
             {
                 MotionEvent event = eventlist.peek();
 
@@ -69,8 +71,8 @@ public class RenderThread extends Thread {
                     downEvent = eventlist.remove();
 
                     Block b = new Block(new Point((int)(downEvent.getX() * input.scaleX), (int)(downEvent.getY() * input.scaleY)));
-                    b.image = view.engine.getRenderer().newImage("Box2.png");
-                    view.engine.getAssetFactory().addAsset(b);
+                    b.image = engine.getRenderer().newImage("Box2.png");
+                    engine.getAssetFactory().addAsset(b);
                 }
                else  if(event.getAction() == MotionEvent.ACTION_UP){
                     upEvent = eventlist.remove();
@@ -121,17 +123,18 @@ public class RenderThread extends Thread {
             float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
 
-            view.engine.getRenderer().clearScreen(0);
+            engine.getRenderer().clearScreen(0);
 
-            view.engine.getCurrentScreen().update(deltaTime);
-            view.engine.getCurrentScreen().draw();
+            engine.getCurrentScreen().update(deltaTime);
+            engine.getCurrentScreen().draw();
 
             Canvas canvas = this.surfaceHolder.lockCanvas();
 
             if(canvas != null)
             {
                 canvas.getClipBounds(dstRect);
-                canvas.drawBitmap(view.getFramebuffer(), null, dstRect, null);
+                Renderer render = (Renderer)engine.getRenderer();
+                canvas.drawBitmap(render.getView().getFramebuffer(), null, dstRect, null);
 
                 this.surfaceHolder.unlockCanvasAndPost(canvas);
             }

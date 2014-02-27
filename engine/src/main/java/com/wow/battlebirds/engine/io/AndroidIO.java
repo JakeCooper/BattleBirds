@@ -14,11 +14,9 @@ import android.content.Context;
 public class AndroidIO implements IFileIO
 {
 
-    Context context;
-
-    public AndroidIO(Context context)
+    public AndroidIO()
     {
-        this.context = context;
+
     }
 
     public InputStream readFile(String file) throws IOException

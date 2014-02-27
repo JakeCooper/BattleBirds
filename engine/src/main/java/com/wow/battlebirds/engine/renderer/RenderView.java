@@ -1,36 +1,54 @@
 package com.wow.battlebirds.engine.renderer;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Bitmap;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.wow.battlebirds.engine.EngineInterface;
-
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class RenderView extends SurfaceView implements SurfaceHolder.Callback {
-
+public class RenderView extends SurfaceView implements SurfaceHolder.Callback
+{
     private RenderThread thread;
-    private Bitmap framebuffer;
-    public EngineInterface engine;
+    private Bitmap frameBuffer;
+    public Context context;
 
-    public RenderView(Context context, EngineInterface engine, Bitmap framebuffer)
+    public int deviceWidth;
+    public int deviceHeight;
+
+    public boolean isPortrait;
+
+    public RenderView(Context context, int deviceWidth, int deviceHeight)
     {
         super(context);
+        this.context = context;
+
         this.getHolder().addCallback(this);
-        this.thread = new RenderThread(getHolder(), this);
-        this.framebuffer = framebuffer;
-        this.engine = engine;
+
+        this.deviceWidth = deviceWidth;
+        this.deviceHeight = deviceHeight;
+
+        isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+
+        int frameBufferWidth = isPortrait ? 720: 1280;
+        int frameBufferHeight = isPortrait ? 1280: 720;
+
+        this.frameBuffer = Bitmap.createBitmap(frameBufferWidth, frameBufferHeight, Bitmap.Config.ARGB_8888);
 
         this.setFocusable(true);
     }
 
     public Bitmap getFramebuffer()
     {
-        return framebuffer;
+        return frameBuffer;
+    }
+
+    public void setThread(RenderThread thread)
+    {
+        this.thread = thread;
     }
 
     @Override

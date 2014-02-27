@@ -4,17 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.content.res.Configuration;
 
 import com.wow.battlebirds.engine.entity.asset.AssetFactory;
 import com.wow.battlebirds.engine.input.ITouchInput;
-import com.wow.battlebirds.engine.input.touchScreen;
-import com.wow.battlebirds.engine.io.AndroidIO;
 import com.wow.battlebirds.engine.io.IFileIO;
+import com.wow.battlebirds.engine.renderer.RenderThread;
 import com.wow.battlebirds.engine.renderer.RenderView;
-import com.wow.battlebirds.engine.renderer.Renderer;
 import com.wow.battlebirds.engine.renderer.IRenderer;
 import com.wow.battlebirds.engine.sound.IAudio;
 import com.wow.battlebirds.game.GameScreen;
@@ -24,13 +19,9 @@ import com.wow.battlebirds.game.GameScreen;
  */
 public class BaseActivity extends Activity implements EngineInterface
 {
+    RenderThread renderThread;
     RenderView renderView;
-    ITouchInput input;
-    IFileIO fileIO;
-    IRenderer renderer;
-    IAudio audio;
-    Screen screen;
-    AssetFactory assets;
+    Engine engine;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -41,26 +32,16 @@ public class BaseActivity extends Activity implements EngineInterface
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        this.renderView = new RenderView(this, getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight());
+        this.engine = new Engine(this.renderView);
+        this.renderThread = new RenderThread(this.renderView.getHolder(), this.engine);
 
-        int frameBufferWidth = isPortrait ? 720: 1280;
-        int frameBufferHeight = isPortrait ? 1280: 720;
+        this.renderView.setThread(this.renderThread);
+        this.renderView.setOnTouchListener(this.engine.getInput());
 
-        float scaleX = (float) frameBufferWidth
-                / getWindowManager().getDefaultDisplay().getWidth();
-        float scaleY = (float) frameBufferHeight
-                / getWindowManager().getDefaultDisplay().getHeight();
+        setContentView(this.renderView);
 
-        Bitmap frameBuffer = Bitmap.createBitmap(frameBufferWidth,frameBufferHeight, Config.ARGB_8888);
-
-        input = new touchScreen(scaleX, scaleY);
-        assets = new AssetFactory();
-        renderer = new Renderer(this, getAssets(), frameBuffer);
-        fileIO = new AndroidIO(this);
-        renderView = new RenderView(this, this, frameBuffer);
-        renderView.setOnTouchListener(input);
-        setContentView(renderView);
-        setScreen(new GameScreen(this));
+        this.engine.setScreen(new GameScreen(this));
     }
 
     @Override
@@ -78,39 +59,42 @@ public class BaseActivity extends Activity implements EngineInterface
     @Override
     public ITouchInput getInput()
     {
-        return input;
+        return engine.input;
     }
 
     @Override
     public IFileIO getFileIO()
     {
-        return fileIO;
+        return engine.fileIO;
     }
 
     @Override
     public IRenderer getRenderer()
     {
-        return renderer;
+        return engine.renderer;
     }
 
     @Override
-    public AssetFactory getAssetFactory() { return assets; }
+    public AssetFactory getAssetFactory()
+    {
+        return engine.assets;
+    }
 
     @Override
     public IAudio getAudio()
     {
-        return audio;
+        return engine.audio;
     }
 
     @Override
     public void setScreen(Screen screen)
     {
-        this.screen = screen;
+        this.engine.screen = screen;
     }
 
     @Override
     public Screen getCurrentScreen()
     {
-        return screen;
+        return engine.screen;
     }
 }

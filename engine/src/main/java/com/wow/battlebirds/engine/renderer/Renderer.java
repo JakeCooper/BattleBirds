@@ -13,8 +13,6 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Rect;
 
 import com.wow.battlebirds.engine.BitmapImage;
-import com.wow.battlebirds.engine.EngineInterface;
-import com.wow.battlebirds.engine.ImageInterface;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -23,17 +21,16 @@ public class Renderer implements IRenderer
 {
     private Canvas canvas;
     private AssetManager assets;
-    Bitmap framebuffer;
-    EngineInterface engine;
+    private RenderView view;
     Rect srcRect = new Rect();
     Rect dstRect = new Rect();
 
-    public Renderer(EngineInterface engine, AssetManager assets, Bitmap frameBuffer)
+    public Renderer(RenderView view)
     {
-        this.engine = engine;
-        this.assets = assets;
-        this.framebuffer = frameBuffer;
-        canvas = new Canvas(framebuffer);
+        this.view = view;
+        this.assets = view.context.getAssets();
+
+        canvas = new Canvas(view.getFramebuffer());
     }
 
     public BitmapImage newImage(String file)
@@ -106,8 +103,14 @@ public class Renderer implements IRenderer
 
         canvas.drawBitmap(img.getBitmap(), srcRect, dstRect, null);
     }
+
     public void drawString(String str, Paint paint)
     {
 
+    }
+
+    public RenderView getView()
+    {
+        return view;
     }
 }
