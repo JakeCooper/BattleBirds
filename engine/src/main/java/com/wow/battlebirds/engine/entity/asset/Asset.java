@@ -2,7 +2,7 @@ package com.wow.battlebirds.engine.entity.asset;
 
 import android.graphics.Point;
 
-import com.wow.battlebirds.engine.Image;
+import com.wow.battlebirds.engine.BitmapImage;
 import com.wow.battlebirds.engine.sound.ISound;
 
 /**
@@ -10,7 +10,7 @@ import com.wow.battlebirds.engine.sound.ISound;
  */
 public abstract class Asset
 {
-    public Image image;
+    public BitmapImage image;
     public ISound sound;
 
     public int team;

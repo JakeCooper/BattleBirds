@@ -5,11 +5,11 @@ import android.graphics.Bitmap;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class AndroidBitmap implements Image
+public class BitmapImage implements ImageInterface
 {
     private Bitmap bitmap;
 
-    public AndroidBitmap(Bitmap bitmap)
+    public BitmapImage(Bitmap bitmap)
     {
         this.bitmap = bitmap;
     }

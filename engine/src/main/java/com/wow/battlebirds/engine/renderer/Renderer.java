@@ -12,9 +12,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Rect;
 
-import com.wow.battlebirds.engine.AndroidBitmap;
+import com.wow.battlebirds.engine.BitmapImage;
 import com.wow.battlebirds.engine.EngineInterface;
-import com.wow.battlebirds.engine.Image;
+import com.wow.battlebirds.engine.ImageInterface;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -36,7 +36,7 @@ public class Renderer implements IRenderer
         canvas = new Canvas(framebuffer);
     }
 
-    public Image newImage(String file)
+    public BitmapImage newImage(String file)
     {
         Options options = new Options();
         options.inPreferredConfig = Config.ARGB_8888;
@@ -65,7 +65,7 @@ public class Renderer implements IRenderer
             }
         }
 
-        return new AndroidBitmap(bitmap);
+        return new BitmapImage(bitmap);
     }
 
     @Override
@@ -86,13 +86,13 @@ public class Renderer implements IRenderer
     }
 
     @Override
-    public void drawImage(Image img, int x, int y)
+    public void drawImage(BitmapImage img, int x, int y)
     {
         canvas.drawBitmap(img.getBitmap(), x, y, null);
     }
 
     @Override
-    public void drawImageScaled(Image img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight)
+    public void drawImageScaled(BitmapImage img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight)
     {
         srcRect.left = srcX;
         srcRect.top = srcY;

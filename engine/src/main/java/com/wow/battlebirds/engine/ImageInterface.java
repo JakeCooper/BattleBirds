@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public interface Image
+public interface ImageInterface
 {
 
     public int getWidth();

@@ -5,7 +5,7 @@ import java.util.ListIterator;
 import android.graphics.Point;
 
 import com.wow.battlebirds.engine.EngineInterface;
-import com.wow.battlebirds.engine.Image;
+import com.wow.battlebirds.engine.BitmapImage;
 import com.wow.battlebirds.engine.Screen;
 import com.wow.battlebirds.engine.entity.asset.Asset;
 
@@ -19,8 +19,8 @@ public class GameScreen extends Screen
     public Map map;
     public Cannon redCannon;
     public Cannon blueCannon;
-    Image redBarrel;
-    Image blueBarrel;
+    BitmapImage redBarrel;
+    BitmapImage blueBarrel;
 
     public GameScreen(EngineInterface engine)
     {

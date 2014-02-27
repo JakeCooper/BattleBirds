@@ -2,7 +2,7 @@ package com.wow.battlebirds.engine.renderer;
 
 import android.graphics.Paint;
 
-import com.wow.battlebirds.engine.Image;
+import com.wow.battlebirds.engine.BitmapImage;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -10,7 +10,7 @@ import com.wow.battlebirds.engine.Image;
 public interface IRenderer
 {
 
-    public Image newImage(String file);
+    public BitmapImage newImage(String file);
 
     public void clearScreen(int colour);
 
@@ -18,9 +18,9 @@ public interface IRenderer
 
     public void drawBox();
 
-    public void drawImage(Image img, int x, int y);
+    public void drawImage(BitmapImage img, int x, int y);
 
-    public void drawImageScaled(Image img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight);
+    public void drawImageScaled(BitmapImage img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight);
 
     public void drawString(String str, Paint paint);
 }
