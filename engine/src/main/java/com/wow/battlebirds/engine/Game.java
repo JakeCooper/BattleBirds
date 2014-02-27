@@ -1,0 +1,22 @@
+package com.wow.battlebirds.engine;
+
+/**
+ * Created by ChrisH on 22/02/14.
+ */
+public interface Game
+{
+
+    public Audio getAudio();
+
+    public FileIO getFileIO();
+
+    public Input getInput();
+
+    public Renderer getRenderer();
+
+    public AssetFactory getAssetFactory();
+
+    public void setScreen(Screen screen);
+
+    public Screen getCurrentScreen();
+}
