@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.entity.asset;
 
 import java.util.ArrayList;
 import java.util.List;

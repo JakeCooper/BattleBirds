@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.io;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,7 +11,7 @@ import android.content.Context;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class AndroidIO implements FileIO
+public class AndroidIO implements IFileIO
 {
 
     Context context;

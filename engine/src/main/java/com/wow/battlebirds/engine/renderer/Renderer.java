@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.renderer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,21 +12,25 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Rect;
 
+import com.wow.battlebirds.engine.AndroidBitmap;
+import com.wow.battlebirds.engine.EngineInterface;
+import com.wow.battlebirds.engine.Image;
+
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class AndroidRenderer implements Renderer
+public class Renderer implements IRenderer
 {
     private Canvas canvas;
     private AssetManager assets;
     Bitmap framebuffer;
-    Game game;
+    EngineInterface engine;
     Rect srcRect = new Rect();
     Rect dstRect = new Rect();
 
-    public AndroidRenderer(Game game, AssetManager assets, Bitmap frameBuffer)
+    public Renderer(EngineInterface engine, AssetManager assets, Bitmap frameBuffer)
     {
-        this.game = game;
+        this.engine = engine;
         this.assets = assets;
         this.framebuffer = frameBuffer;
         canvas = new Canvas(framebuffer);
@@ -61,7 +65,7 @@ public class AndroidRenderer implements Renderer
             }
         }
 
-        return new AndroidImage(bitmap);
+        return new AndroidBitmap(bitmap);
     }
 
     @Override

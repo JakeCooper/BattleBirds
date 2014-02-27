@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.game;
 
 /**
  * Created by Andrew on 22/02/14.

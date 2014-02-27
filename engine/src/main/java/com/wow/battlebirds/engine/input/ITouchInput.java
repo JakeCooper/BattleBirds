@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.input;
 
 import java.util.Queue;
 import android.view.MotionEvent;
@@ -8,7 +8,7 @@ import android.view.View;
  * Created by Andrew on 22/02/14.
  * For keeping up with touch events
  */
-public interface Input extends View.OnTouchListener{
+public interface ITouchInput extends View.OnTouchListener{
 
     public static class TouchEvent{
         public static final int TOUCH_DOWN = 0;

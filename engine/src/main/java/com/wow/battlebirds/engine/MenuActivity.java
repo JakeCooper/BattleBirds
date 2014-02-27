@@ -33,7 +33,7 @@ public class MenuActivity extends Activity
     public void runGame(View view)
     {
 
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, BaseActivity.class);
         startActivity(intent);
 
     }

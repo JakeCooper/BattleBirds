@@ -2,23 +2,32 @@ package com.wow.battlebirds.engine;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.content.res.Configuration;
 
+import com.wow.battlebirds.engine.entity.asset.AssetFactory;
+import com.wow.battlebirds.engine.input.ITouchInput;
+import com.wow.battlebirds.engine.input.touchScreen;
+import com.wow.battlebirds.engine.io.AndroidIO;
+import com.wow.battlebirds.engine.io.IFileIO;
+import com.wow.battlebirds.engine.renderer.Renderer;
+import com.wow.battlebirds.engine.renderer.IRenderer;
+import com.wow.battlebirds.engine.sound.IAudio;
+import com.wow.battlebirds.game.GameScreen;
+
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class GameActivity extends Activity implements Game
+public class BaseActivity extends Activity implements EngineInterface
 {
     GameView renderView;
-    Input input;
-    FileIO fileIO;
-    Renderer renderer;
-    Audio audio;
+    ITouchInput input;
+    IFileIO fileIO;
+    IRenderer renderer;
+    IAudio audio;
     Screen screen;
     AssetFactory assets;
 
@@ -45,14 +54,12 @@ public class GameActivity extends Activity implements Game
 
         input = new touchScreen(scaleX, scaleY);
         assets = new AssetFactory();
-        renderer = new AndroidRenderer(this, getAssets(), frameBuffer);
+        renderer = new Renderer(this, getAssets(), frameBuffer);
         fileIO = new AndroidIO(this);
         renderView = new GameView(this, this, frameBuffer);
         renderView.setOnTouchListener(input);
         setContentView(renderView);
         setScreen(new GameScreen(this));
-
-        Log.d("GameActivity", "View added");
     }
 
     @Override
@@ -60,6 +67,7 @@ public class GameActivity extends Activity implements Game
     {
         super.onDestroy();
     }
+
     @Override
     protected void onStop()
     {
@@ -67,19 +75,19 @@ public class GameActivity extends Activity implements Game
     }
 
     @Override
-    public Input getInput()
+    public ITouchInput getInput()
     {
         return input;
     }
 
     @Override
-    public FileIO getFileIO()
+    public IFileIO getFileIO()
     {
         return fileIO;
     }
 
     @Override
-    public Renderer getRenderer()
+    public IRenderer getRenderer()
     {
         return renderer;
     }
@@ -88,7 +96,7 @@ public class GameActivity extends Activity implements Game
     public AssetFactory getAssetFactory() { return assets; }
 
     @Override
-    public Audio getAudio()
+    public IAudio getAudio()
     {
         return audio;
     }

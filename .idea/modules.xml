@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BattleBirds.iml" filepath="$PROJECT_DIR$/BattleBirds.iml" />
       <module fileurl="file://$PROJECT_DIR$/CodeProject.iml" filepath="$PROJECT_DIR$/CodeProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/EABattleBirds.iml" filepath="$PROJECT_DIR$/EABattleBirds.iml" />
-      <module fileurl="file://$PROJECT_DIR$/engine/game.iml" filepath="$PROJECT_DIR$/engine/game.iml" />
+      <module fileurl="file://$PROJECT_DIR$/engine/engine.iml" filepath="$PROJECT_DIR$/engine/engine.iml" />
     </modules>
   </component>
 </project>

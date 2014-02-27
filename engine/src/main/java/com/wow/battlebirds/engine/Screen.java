@@ -6,10 +6,10 @@ package com.wow.battlebirds.engine;
 public abstract class Screen
 {
 
-    protected final Game game;
+    protected final EngineInterface engine;
 
-    public Screen(Game game) {
-        this.game = game;
+    public Screen(EngineInterface engine) {
+        this.engine = engine;
     }
     public abstract void update(float deltaTime);
 

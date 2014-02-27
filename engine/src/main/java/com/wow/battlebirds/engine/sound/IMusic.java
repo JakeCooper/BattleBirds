@@ -1,9 +1,9 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.sound;
 
 /**
  * Created by ChrisH on 22/02/14.
  */
-public interface Music
+public interface IMusic
 {
     public void play();
 

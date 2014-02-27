@@ -1,6 +1,8 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.game;
 
 import android.graphics.Point;
+
+import com.wow.battlebirds.engine.entity.asset.Asset;
 
 /**
  * Created by Jake on 22/02/14.

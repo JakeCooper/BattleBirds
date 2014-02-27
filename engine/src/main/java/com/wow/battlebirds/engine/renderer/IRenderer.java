@@ -1,11 +1,13 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.renderer;
 
 import android.graphics.Paint;
+
+import com.wow.battlebirds.engine.Image;
 
 /**
  * Created by ChrisH on 22/02/14.
  */
-public interface Renderer
+public interface IRenderer
 {
 
     public Image newImage(String file);

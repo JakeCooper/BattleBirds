@@ -1,6 +1,9 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.entity.asset;
 
 import android.graphics.Point;
+
+import com.wow.battlebirds.engine.Image;
+import com.wow.battlebirds.engine.sound.ISound;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -8,7 +11,7 @@ import android.graphics.Point;
 public abstract class Asset
 {
     public Image image;
-    public Sound sound;
+    public ISound sound;
 
     public int team;
 
@@ -30,7 +33,7 @@ public abstract class Asset
         return BlockPoints;
     }
 
-    Asset(Point createPosition, int length, int height){
+    public Asset(Point createPosition, int length, int height){
         this.length = length;
         this.height = height;
 

@@ -1,4 +1,4 @@
-package com.wow.battlebirds.engine;
+package com.wow.battlebirds.engine.input;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 /**
  * Created by Andrew on 22/02/14.
  */
-public class touchScreen implements Input{
+public class touchScreen implements ITouchInput {
 
     public float scaleX;
     public float scaleY;
@@ -18,7 +18,7 @@ public class touchScreen implements Input{
         return eventlist;
     }
 
-    touchScreen(float scaleX, float scaleY)
+    public touchScreen(float scaleX, float scaleY)
     {
         eventlist = new LinkedList<MotionEvent>();
         this.scaleX = scaleX;
