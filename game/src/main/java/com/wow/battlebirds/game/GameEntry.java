@@ -20,7 +20,6 @@ public class GameEntry extends Thread {
     private GameView gamePanel;
 
     private boolean running;
-    private touchScreen events;
 
     MotionEvent upEvent = null;
     MotionEvent downEvent = null;
@@ -54,7 +53,7 @@ public class GameEntry extends Thread {
         long startTime = System.nanoTime();
         while (running)
         {
-            if(!gamePanel.getHolder().getSurface().isValid())
+            if(!this.surfaceHolder.getSurface().isValid())
                 continue;
 
             // Traverses all the current touch events
@@ -119,8 +118,6 @@ public class GameEntry extends Thread {
 
             }
 
-
-
             float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
 
@@ -129,10 +126,10 @@ public class GameEntry extends Thread {
             gamePanel.game.getCurrentScreen().update(deltaTime);
             gamePanel.game.getCurrentScreen().draw();
 
-            Canvas canvas = gamePanel.getHolder().lockCanvas();
+            Canvas canvas = this.surfaceHolder.lockCanvas();
             canvas.getClipBounds(dstRect);
             canvas.drawBitmap(gamePanel.getFramebuffer(), null, dstRect, null);
-            gamePanel.getHolder().unlockCanvasAndPost(canvas);
+            this.surfaceHolder.unlockCanvasAndPost(canvas);
         }
     }
 }

@@ -5,7 +5,6 @@ package com.wow.battlebirds.game;
  */
 public interface Music
 {
-
     public void play();
 
     public void stop();

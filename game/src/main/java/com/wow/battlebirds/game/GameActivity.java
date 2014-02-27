@@ -12,8 +12,8 @@ import android.content.res.Configuration;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class GameActivity extends Activity implements Game {
-
+public class GameActivity extends Activity implements Game
+{
     GameView renderView;
     Input input;
     FileIO fileIO;
@@ -23,7 +23,8 @@ public class GameActivity extends Activity implements Game {
     AssetFactory assets;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,11 +56,13 @@ public class GameActivity extends Activity implements Game {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
     }
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
     }
 

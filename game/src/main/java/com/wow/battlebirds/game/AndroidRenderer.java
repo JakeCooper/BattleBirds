@@ -15,12 +15,12 @@ import android.graphics.Rect;
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class AndroidRenderer implements Renderer {
-
-    private Bitmap framebuffer;
-    private AssetManager assets;
-    private Game game;
+public class AndroidRenderer implements Renderer
+{
     private Canvas canvas;
+    private AssetManager assets;
+    Bitmap framebuffer;
+    Game game;
     Rect srcRect = new Rect();
     Rect dstRect = new Rect();
 

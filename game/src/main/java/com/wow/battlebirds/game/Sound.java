@@ -5,6 +5,5 @@ package com.wow.battlebirds.game;
  */
 public interface Sound
 {
-
     public void play(float volume);
 }
