@@ -1,27 +1,36 @@
 package com.wow.battlebirds.engine;
 
+import android.graphics.Point;
+
 import com.wow.battlebirds.engine.entity.asset.AssetFactory;
-import com.wow.battlebirds.engine.input.ITouchInput;
-import com.wow.battlebirds.engine.input.touchScreen;
+import com.wow.battlebirds.engine.input.BaseTouchInput;
+import com.wow.battlebirds.engine.input.ITouchEventCallback;
+import com.wow.battlebirds.engine.input.MultiTouchInput;
+import com.wow.battlebirds.engine.input.TouchEvent;
 import com.wow.battlebirds.engine.io.AndroidIO;
 import com.wow.battlebirds.engine.io.IFileIO;
 import com.wow.battlebirds.engine.renderer.IRenderer;
 import com.wow.battlebirds.engine.renderer.Renderer;
 import com.wow.battlebirds.engine.renderer.RenderView;
 import com.wow.battlebirds.engine.sound.IAudio;
+import com.wow.battlebirds.game.Block;
+
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by ChrisH on 27/02/14.
  */
-public class Engine implements EngineInterface
+public class Engine implements EngineInterface, ITouchEventCallback
 {
-    ITouchInput input;
+    BaseTouchInput input;
     IFileIO fileIO;
     IRenderer renderer;
     IAudio audio;
     Screen screen;
     AssetFactory assets;
     RenderView view;
+
+    private ReentrantLock EngineLock = new ReentrantLock();
 
     public Engine(RenderView view)
     {
@@ -32,10 +41,33 @@ public class Engine implements EngineInterface
         float scaleY = (float)  view.getFramebuffer().getHeight()
                 / view.deviceHeight;
 
-        input = new touchScreen(scaleX, scaleY);
+        input = new MultiTouchInput(scaleX, scaleY);
+        input.setTouchEventCallback(this);
+
         assets = new AssetFactory();
         renderer = new Renderer(view);
         fileIO = new AndroidIO();
+    }
+
+    public void onTouch(TouchEvent event)
+    {
+        if(event.getMotionType() == TouchEvent.TOUCH_DOWN)
+        {
+            try {
+                EngineLock.lock();
+
+                Block b = new Block(new Point((int)(event.getX() * input.scaleX), (int)(event.getY() * input.scaleY)));
+                b.image = getRenderer().newImage("Box2.png");
+                getAssetFactory().addAsset(b);
+            } finally {
+                EngineLock.unlock();
+            }
+        }
+    }
+
+    public ReentrantLock getEngineLock()
+    {
+        return EngineLock;
     }
 
     @Override
@@ -51,7 +83,7 @@ public class Engine implements EngineInterface
     }
 
     @Override
-    public ITouchInput getInput()
+    public BaseTouchInput getInput()
     {
         return input;
     }

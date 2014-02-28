@@ -6,7 +6,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.wow.battlebirds.engine.entity.asset.AssetFactory;
-import com.wow.battlebirds.engine.input.ITouchInput;
+import com.wow.battlebirds.engine.input.BaseTouchInput;
 import com.wow.battlebirds.engine.io.IFileIO;
 import com.wow.battlebirds.engine.renderer.RenderThread;
 import com.wow.battlebirds.engine.renderer.RenderView;
@@ -57,7 +57,7 @@ public class BaseActivity extends Activity implements EngineInterface
     }
 
     @Override
-    public ITouchInput getInput()
+    public BaseTouchInput getInput()
     {
         return engine.input;
     }

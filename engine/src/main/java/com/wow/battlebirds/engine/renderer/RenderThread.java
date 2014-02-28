@@ -10,7 +10,7 @@ import java.util.Queue;
 import android.graphics.Point;
 
 import com.wow.battlebirds.engine.Engine;
-import com.wow.battlebirds.engine.input.touchScreen;
+import com.wow.battlebirds.engine.input.MultiTouchInput;
 import com.wow.battlebirds.game.Block;
 
 /**
@@ -59,9 +59,9 @@ public class RenderThread extends Thread {
                 continue;
 
             // Traverses all the current touch events
-
+            /*
             Queue<MotionEvent> eventlist = engine.getInput().getMotionEvents();
-            touchScreen input = (touchScreen) engine.getInput();
+            MultiTouchInput input = (MultiTouchInput) engine.getInput();
 
             for(Iterator<MotionEvent> iter = eventlist.iterator(); iter.hasNext(); )
             {
@@ -69,10 +69,6 @@ public class RenderThread extends Thread {
 
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     downEvent = eventlist.remove();
-
-                    Block b = new Block(new Point((int)(downEvent.getX() * input.scaleX), (int)(downEvent.getY() * input.scaleY)));
-                    b.image = engine.getRenderer().newImage("Box2.png");
-                    engine.getAssetFactory().addAsset(b);
                 }
                else  if(event.getAction() == MotionEvent.ACTION_UP){
                     upEvent = eventlist.remove();
@@ -118,25 +114,31 @@ public class RenderThread extends Thread {
                 }
                 */
 
-            }
+          //  }
 
             float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
 
-            engine.getRenderer().clearScreen(0);
+            try {
+                engine.getEngineLock().lock();
 
-            engine.getCurrentScreen().update(deltaTime);
-            engine.getCurrentScreen().draw();
+                engine.getRenderer().clearScreen(0);
 
-            Canvas canvas = this.surfaceHolder.lockCanvas();
+                engine.getCurrentScreen().update(deltaTime);
+                engine.getCurrentScreen().draw();
 
-            if(canvas != null)
-            {
-                canvas.getClipBounds(dstRect);
-                Renderer render = (Renderer)engine.getRenderer();
-                canvas.drawBitmap(render.getView().getFramebuffer(), null, dstRect, null);
+                Canvas canvas = this.surfaceHolder.lockCanvas();
 
-                this.surfaceHolder.unlockCanvasAndPost(canvas);
+                if(canvas != null)
+                {
+                    canvas.getClipBounds(dstRect);
+                    Renderer render = (Renderer)engine.getRenderer();
+                    canvas.drawBitmap(render.getView().getFramebuffer(), null, dstRect, null);
+
+                    this.surfaceHolder.unlockCanvasAndPost(canvas);
+                }
+            } finally {
+                engine.getEngineLock().unlock();
             }
         }
     }

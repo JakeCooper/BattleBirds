@@ -9,16 +9,13 @@ import java.util.LinkedList;
 /**
  * Created by Andrew on 22/02/14.
  */
-public class touchScreen implements ITouchInput {
-
-    public float scaleX;
-    public float scaleY;
-    private Queue<MotionEvent> eventlist;
+public class MultiTouchInput extends BaseTouchInput
+{
     public Queue<MotionEvent> getMotionEvents(){
         return eventlist;
     }
 
-    public touchScreen(float scaleX, float scaleY)
+    public MultiTouchInput(float scaleX, float scaleY)
     {
         eventlist = new LinkedList<MotionEvent>();
         this.scaleX = scaleX;
@@ -27,7 +24,7 @@ public class touchScreen implements ITouchInput {
 
     @Override
     public boolean onTouch(View v, MotionEvent event){
-        eventlist.add(event);
+        this.fireTouchEvent(new TouchEvent(event));
         return true;
     }
 }
