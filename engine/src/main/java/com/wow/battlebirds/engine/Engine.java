@@ -19,6 +19,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by ChrisH on 27/02/14.
+ *
+ * The main Engine class which holds accessors to all of the core functionality.
  */
 public class Engine implements EngineInterface, ITouchEventCallback
 {

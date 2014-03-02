@@ -7,6 +7,8 @@ import com.wow.battlebirds.engine.sound.ISound;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * A container for different types of assets such as sounds or images.
  */
 public abstract class Asset
 {

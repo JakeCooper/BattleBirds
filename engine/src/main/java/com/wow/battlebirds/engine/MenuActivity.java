@@ -11,6 +11,8 @@ import android.content.Intent;
 
 /**
  * Created by kisselev on 22/02/14.
+ *
+ * Entry point main menu activity.
  */
 public class MenuActivity extends Activity
 {

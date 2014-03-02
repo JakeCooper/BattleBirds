@@ -7,6 +7,8 @@ import android.view.View;
 /**
  * Created by Andrew on 22/02/14.
  * For keeping up with touch events
+ *
+ * This base class will be inherited by either a Single or Multi touch class.
  */
 public abstract class BaseTouchInput implements View.OnTouchListener
 {
@@ -14,8 +16,6 @@ public abstract class BaseTouchInput implements View.OnTouchListener
 
     public float scaleX;
     public float scaleY;
-
-    protected Queue<MotionEvent> eventlist;
 
     public void setTouchEventCallback(ITouchEventCallback callback)
     {
@@ -25,11 +25,6 @@ public abstract class BaseTouchInput implements View.OnTouchListener
     public void fireTouchEvent(TouchEvent event)
     {
         this.TouchEventCallback.onTouch(event);
-    }
-
-    public Queue<MotionEvent> getMotionEvents()
-    {
-        return eventlist;
     }
 }
 

@@ -16,6 +16,11 @@ import com.wow.battlebirds.game.GameScreen;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * Base activity for the Engine, which also implements the Engine interface to allow
+ * for accessing the Engine through the activity.
+ *
+ * The actual game can extend this class, and access the Engine if necessary.
  */
 public class BaseActivity extends Activity implements EngineInterface
 {

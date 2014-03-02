@@ -8,16 +8,13 @@ import java.util.LinkedList;
 
 /**
  * Created by Andrew on 22/02/14.
+ *
+ * This extension of the BaseTouchInput class will serve to correctly handle multi touch input events.
  */
 public class MultiTouchInput extends BaseTouchInput
 {
-    public Queue<MotionEvent> getMotionEvents(){
-        return eventlist;
-    }
-
     public MultiTouchInput(float scaleX, float scaleY)
     {
-        eventlist = new LinkedList<MotionEvent>();
         this.scaleX = scaleX;
         this.scaleY = scaleY;
     }

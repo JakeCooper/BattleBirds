@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * Serves as an internal structure for Bitmap images and interactions.
  */
 public class BitmapImage implements ImageInterface
 {

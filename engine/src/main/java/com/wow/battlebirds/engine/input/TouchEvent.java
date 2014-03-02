@@ -4,6 +4,8 @@ import android.view.MotionEvent;
 
 /**
  * Created by ChrisH on 27/02/14.
+ *
+ * For internal tracking of TouchEvents.
  */
 public class TouchEvent
 {

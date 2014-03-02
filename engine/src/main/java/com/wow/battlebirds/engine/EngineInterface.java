@@ -8,6 +8,8 @@ import com.wow.battlebirds.engine.sound.IAudio;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * A logical interface for all the core accessors.
  */
 public interface EngineInterface
 {

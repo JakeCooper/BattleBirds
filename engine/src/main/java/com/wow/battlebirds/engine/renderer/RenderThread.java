@@ -15,6 +15,8 @@ import com.wow.battlebirds.game.Block;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * Thread that handles all rendering and drawing calls.
  */
 public class RenderThread extends Thread {
 
@@ -22,9 +24,6 @@ public class RenderThread extends Thread {
     private Engine engine;
 
     private boolean running;
-
-    MotionEvent upEvent = null;
-    MotionEvent downEvent = null;
 
     public RenderThread(SurfaceHolder surfaceHolder, Engine engine)
     {
