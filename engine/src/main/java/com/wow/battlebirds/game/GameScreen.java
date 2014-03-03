@@ -1,12 +1,12 @@
 package com.wow.battlebirds.game;
 
 import java.util.List;
-import java.util.ListIterator;
 import android.graphics.Point;
 
 import com.wow.battlebirds.engine.EngineInterface;
-import com.wow.battlebirds.engine.BitmapImage;
 import com.wow.battlebirds.engine.Screen;
+import com.wow.battlebirds.engine.entity.Entity;
+import com.wow.battlebirds.engine.entity.EntityManager;
 import com.wow.battlebirds.engine.entity.asset.Asset;
 
 /**
@@ -19,29 +19,33 @@ public class GameScreen extends Screen
     public Map map;
     public Cannon redCannon;
     public Cannon blueCannon;
-    BitmapImage redBarrel;
-    BitmapImage blueBarrel;
+    Entity redBarrel;
+    Entity blueBarrel;
 
     public GameScreen(EngineInterface engine)
     {
         super(engine);
         state = GameState.STATE_INIT;
 
-        Block block = new Block(new Point(0, 0));
-        block.image = engine.getRenderer().newImage("Box2.png");
-        engine.getAssetFactory().addAsset(block);
-
         map = new Map();
-        map.image = engine.getRenderer().newImage("Background2.png");
+        map.asset = engine.getAssetFactory().getAsset("Background2.png");
         map.setOffset(-1000);
 
         redCannon = new Cannon(new Point(40,720-302), 20, 0);
-        redCannon.image = engine.getRenderer().newImage("cannon_chassis2.png");
-        redBarrel = engine.getRenderer().newImage("cannon_main2.png");
+        redCannon.asset = engine.getAssetFactory().getAsset("cannon_chassis2.png");
+        redBarrel = new Cannon(new Point(redCannon.position.x+138, redCannon.position.y+110), 20, 0);
+        redBarrel.asset = engine.getAssetFactory().getAsset("cannon_main2.png");
 
         blueCannon = new Cannon(new Point(4200,40), 20, 1);
-        blueCannon.image = engine.getRenderer().newImage("cannon_chassis2.png");
-        blueBarrel = engine.getRenderer().newImage("cannon_main2.png");
+        blueCannon.asset = engine.getAssetFactory().getAsset("cannon_chassis2.png");
+        blueBarrel = new Cannon(new Point(blueCannon.position.x+67, blueCannon.position.y+12), 20, 1);
+        blueBarrel.asset = engine.getAssetFactory().getAsset("cannon_main2.png");
+
+        EntityManager.addEntity(map);
+        EntityManager.addEntity(redCannon);
+        EntityManager.addEntity(blueCannon);
+        EntityManager.addEntity(redBarrel);
+        EntityManager.addEntity(blueBarrel);
 
         state = GameState.STATE_RUN;
     }
@@ -51,11 +55,10 @@ public class GameScreen extends Screen
     {
         if(state == GameState.STATE_RUN)
         {
-            List<Asset> assets = engine.getAssetFactory().retrieveAssets();
-            for (ListIterator<Asset> iter = assets.listIterator(); iter.hasNext(); )
+            List<Entity> entities = EntityManager.retrieveEntities();
+            for(Entity a : entities)
             {
-                Asset asset = iter.next();
-                asset.update(deltaTime);
+                a.update(deltaTime);
             }
         }
     }
@@ -66,19 +69,17 @@ public class GameScreen extends Screen
         if(state == GameState.STATE_RUN)
         {
             // Draw map
-            engine.getRenderer().drawImage(map.image, map.getOffset(), 0);
+            engine.getRenderer().drawImage(map.asset, map.getOffset(), 0);
 
-            engine.getRenderer().drawImage(redCannon.image, redCannon.position.x, redCannon.position.y);
-            engine.getRenderer().drawImage(redBarrel, redCannon.position.x+138, redCannon.position.y+110);
-            engine.getRenderer().drawImage(blueCannon.image, blueCannon.position.x, blueCannon.position.y);
-            engine.getRenderer().drawImage(blueBarrel, blueCannon.position.x+67, blueCannon.position.y+12);
+            engine.getRenderer().drawImage(redCannon.asset, redCannon.position.x, redCannon.position.y);
+            engine.getRenderer().drawImage(redBarrel.asset, redCannon.position.x+138, redCannon.position.y+110);
+            engine.getRenderer().drawImage(blueCannon.asset, blueCannon.position.x, blueCannon.position.y);
+            engine.getRenderer().drawImage(blueBarrel.asset, blueCannon.position.x+67, blueCannon.position.y+12);
 
-            List<Asset> assets = engine.getAssetFactory().retrieveAssets();
-            for (ListIterator<Asset> iter = assets.listIterator(); iter.hasNext(); )
+            List<Entity> entities = EntityManager.retrieveEntities();
+            for(Entity a : entities)
             {
-                Asset asset = iter.next();
-
-                engine.getRenderer().drawImage(asset.image, asset.position.x, asset.position.y);
+                engine.getRenderer().drawImage(a.asset, a.position.x, a.position.y);
             }
         }
     }

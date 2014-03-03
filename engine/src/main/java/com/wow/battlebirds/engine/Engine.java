@@ -2,6 +2,7 @@ package com.wow.battlebirds.engine;
 
 import android.graphics.Point;
 
+import com.wow.battlebirds.engine.entity.EntityManager;
 import com.wow.battlebirds.engine.entity.asset.AssetFactory;
 import com.wow.battlebirds.engine.input.BaseTouchInput;
 import com.wow.battlebirds.engine.input.ITouchEventCallback;
@@ -46,8 +47,8 @@ public class Engine implements EngineInterface, ITouchEventCallback
         input = new MultiTouchInput(scaleX, scaleY);
         input.setTouchEventCallback(this);
 
-        assets = new AssetFactory();
         renderer = new Renderer(view);
+        assets = new AssetFactory(this.renderer);
         fileIO = new AndroidIO();
     }
 
@@ -59,8 +60,9 @@ public class Engine implements EngineInterface, ITouchEventCallback
                 EngineLock.lock();
 
                 Block b = new Block(new Point((int)(event.getX() * input.scaleX), (int)(event.getY() * input.scaleY)));
-                b.image = getRenderer().newImage("Box2.png");
-                getAssetFactory().addAsset(b);
+                b.asset = getAssetFactory().getAsset("Box2.png");
+
+                EntityManager.addEntity(b);
             } finally {
                 EngineLock.unlock();
             }

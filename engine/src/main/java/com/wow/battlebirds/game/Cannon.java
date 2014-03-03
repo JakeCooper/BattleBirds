@@ -2,12 +2,12 @@ package com.wow.battlebirds.game;
 
 import android.graphics.Point;
 
-import com.wow.battlebirds.engine.entity.asset.Asset;
+import com.wow.battlebirds.engine.entity.Entity;
 
 /**
  * Created by Jake on 22/02/14.
  */
-public class Cannon extends Asset {
+public class Cannon extends Entity {
     //Random Angle calibration
     public final float Velocity = 20;
     public float angle;

@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Rect;
 
 import com.wow.battlebirds.engine.BitmapImage;
+import com.wow.battlebirds.engine.entity.asset.Asset;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -83,9 +84,9 @@ public class Renderer implements IRenderer
     }
 
     @Override
-    public void drawImage(BitmapImage img, int x, int y)
+    public void drawImage(Asset img, int x, int y)
     {
-        canvas.drawBitmap(img.getBitmap(), x, y, null);
+        canvas.drawBitmap(img.image.getBitmap(), x, y, null);
     }
 
     @Override

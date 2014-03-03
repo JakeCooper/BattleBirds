@@ -2,12 +2,12 @@ package com.wow.battlebirds.game;
 
 import android.graphics.Point;
 
-import com.wow.battlebirds.engine.entity.asset.Asset;
+import com.wow.battlebirds.engine.entity.Entity;
 
 /**
  * Created by Jake on 22/02/14.
  */
-public class Bird extends Asset {
+public class Bird extends Entity {
     public final float Velocity = 20;
     public final int cannonLength = 200;
     public int team;
@@ -31,6 +31,7 @@ public class Bird extends Asset {
             Viy += -9.8;
         }
     }
+
     @Override
     public void update(float deltaT)
     {

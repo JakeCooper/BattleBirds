@@ -2,12 +2,13 @@ package com.wow.battlebirds.game;
 
 import android.graphics.Point;
 
+import com.wow.battlebirds.engine.entity.Entity;
 import com.wow.battlebirds.engine.entity.asset.Asset;
 
 /**
  * Created by ChrisH on 22/02/14.
  */
-public class Map extends Asset {
+public class Map extends Entity {
 
     private int offsetX;
 

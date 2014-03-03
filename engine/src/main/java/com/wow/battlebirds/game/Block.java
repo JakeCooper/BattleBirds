@@ -2,12 +2,12 @@ package com.wow.battlebirds.game;
 
 import android.graphics.Point;
 
-import com.wow.battlebirds.engine.entity.asset.Asset;
+import com.wow.battlebirds.engine.entity.Entity;
 
 /**
  * Created by Jake on 22/02/14.
  */
-public class Block extends Asset {
+public class Block extends Entity {
 
 
     public Block(Point createPosition){

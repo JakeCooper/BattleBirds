@@ -3,6 +3,7 @@ package com.wow.battlebirds.engine.renderer;
 import android.graphics.Paint;
 
 import com.wow.battlebirds.engine.BitmapImage;
+import com.wow.battlebirds.engine.entity.asset.Asset;
 
 /**
  * Created by ChrisH on 22/02/14.
@@ -18,7 +19,7 @@ public interface IRenderer
 
     public void drawBox();
 
-    public void drawImage(BitmapImage img, int x, int y);
+    public void drawImage(Asset img, int x, int y);
 
     public void drawImageScaled(BitmapImage img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight);
 
