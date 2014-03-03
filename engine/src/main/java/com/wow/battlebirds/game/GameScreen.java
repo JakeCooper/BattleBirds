@@ -78,7 +78,7 @@ public class GameScreen extends Screen
             List<Entity> entities = EntityManager.retrieveEntities();
             for(Entity a : entities)
             {
-                engine.getRenderer().drawImage(a.asset, a.position.x, a.position.y);
+                a.draw(engine.getRenderer());
             }
         }
     }

@@ -2,6 +2,7 @@ package com.wow.battlebirds.engine.entity;
 
 import android.graphics.Point;
 import com.wow.battlebirds.engine.entity.asset.Asset;
+import com.wow.battlebirds.engine.renderer.IRenderer;
 
 /**
  * Created by ChrisH on 27/02/14.
@@ -40,4 +41,9 @@ public abstract class Entity
     }
 
     public abstract void update(float deltaT);
+
+    public void draw(IRenderer renderer)
+    {
+        renderer.drawImage(this.asset, position.x, position.y);
+    }
 }
