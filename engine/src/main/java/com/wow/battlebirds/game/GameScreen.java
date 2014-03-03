@@ -67,14 +67,6 @@ public class GameScreen extends Screen
     {
         if(state == GameState.STATE_RUN)
         {
-            // Draw map
-            engine.getRenderer().drawImage(map.asset, map.getOffset(), 0);
-
-            engine.getRenderer().drawImage(redCannon.asset, redCannon.position.x, redCannon.position.y);
-            engine.getRenderer().drawImage(redBarrel.asset, redCannon.position.x+138, redCannon.position.y+110);
-            engine.getRenderer().drawImage(blueCannon.asset, blueCannon.position.x, blueCannon.position.y);
-            engine.getRenderer().drawImage(blueBarrel.asset, blueCannon.position.x+67, blueCannon.position.y+12);
-
             List<Entity> entities = EntityManager.retrieveEntities();
             for(Entity a : entities)
             {
