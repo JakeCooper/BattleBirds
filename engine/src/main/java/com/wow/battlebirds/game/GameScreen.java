@@ -7,7 +7,6 @@ import com.wow.battlebirds.engine.EngineInterface;
 import com.wow.battlebirds.engine.Screen;
 import com.wow.battlebirds.engine.entity.Entity;
 import com.wow.battlebirds.engine.entity.EntityManager;
-import com.wow.battlebirds.engine.entity.asset.Asset;
 
 /**
  * Created by ChrisH on 22/02/14.

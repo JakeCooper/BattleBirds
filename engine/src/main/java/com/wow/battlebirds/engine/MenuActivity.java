@@ -8,7 +8,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.content.Intent;
 
-
 /**
  * Created by kisselev on 22/02/14.
  *
