@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
  */
 public interface ImageInterface
 {
-
     public int getWidth();
     public int getHeight();
     public Bitmap getBitmap();

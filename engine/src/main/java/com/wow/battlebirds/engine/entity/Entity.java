@@ -12,7 +12,6 @@ import com.wow.battlebirds.engine.renderer.IRenderer;
 public abstract class Entity
 {
     public Asset asset;
-    public int team;
 
     public Point position;
 
@@ -27,7 +26,7 @@ public abstract class Entity
         Point Bl = new Point((this.position.x - (this.length / 2)), (this.position.y - this.height / 2));
         Point Br = new Point((this.position.x + (this.length / 2)), (this.position.y - this.height / 2));
 
-        Point[] BlockPoints = {Tl, Tr, Bl, Br};
+        Point[] BlockPoints = {Tl, Bl, Br, Tr};
 
         return BlockPoints;
     }
@@ -44,6 +43,6 @@ public abstract class Entity
 
     public void draw(IRenderer renderer)
     {
-        renderer.drawImage(this.asset, position.x, position.y);
+        renderer.drawImage(this.asset, this.position.x, this.position.y);
     }
 }

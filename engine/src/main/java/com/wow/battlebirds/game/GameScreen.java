@@ -10,6 +10,9 @@ import com.wow.battlebirds.engine.entity.EntityManager;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * The GameScreen class acts as a bridge between the game logic, and the Engine & rendering logic.
+ * This class overrides functions for updating, drawing, (un)pausing, which supports the flow of game logic.
  */
 public class GameScreen extends Screen
 {
@@ -54,8 +57,7 @@ public class GameScreen extends Screen
     {
         if(state == GameState.STATE_RUN)
         {
-            List<Entity> entities = EntityManager.retrieveEntities();
-            for(Entity a : entities)
+            for(Entity a : EntityManager.retrieveEntities())
             {
                 a.update(deltaTime);
             }
@@ -67,8 +69,7 @@ public class GameScreen extends Screen
     {
         if(state == GameState.STATE_RUN)
         {
-            List<Entity> entities = EntityManager.retrieveEntities();
-            for(Entity a : entities)
+            for(Entity a : EntityManager.retrieveEntities())
             {
                 a.draw(engine.getRenderer());
             }

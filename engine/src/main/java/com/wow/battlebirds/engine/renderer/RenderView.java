@@ -9,6 +9,9 @@ import android.view.SurfaceView;
 
 /**
  * Created by ChrisH on 22/02/14.
+ *
+ * This class creates a framebuffer, for double buffering.
+ * Everything is drawn to this framebuffer before it is blitted to the screen.
  */
 public class RenderView extends SurfaceView implements SurfaceHolder.Callback
 {

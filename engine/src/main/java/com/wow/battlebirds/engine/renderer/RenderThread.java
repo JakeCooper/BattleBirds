@@ -128,6 +128,7 @@ public class RenderThread extends Thread {
 
                 Canvas canvas = this.surfaceHolder.lockCanvas();
 
+                // Its possible for the canvas to be null if the user navigates away from the game
                 if(canvas != null)
                 {
                     canvas.getClipBounds(dstRect);

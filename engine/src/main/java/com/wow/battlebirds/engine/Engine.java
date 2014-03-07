@@ -58,6 +58,8 @@ public class Engine implements EngineInterface, ITouchEventCallback
         {
             try {
                 EngineLock.lock();
+                // Here we'll eventually have to figure out which object is actually touched
+                // by the event, which will require collision detect and iteration of objects.
 
                 Block b = new Block(new Point((int)(event.getX() * input.scaleX), (int)(event.getY() * input.scaleY)));
                 b.asset = getAssetFactory().getAsset("Box2.png");
