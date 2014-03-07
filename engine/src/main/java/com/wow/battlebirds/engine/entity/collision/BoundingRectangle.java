@@ -32,6 +32,21 @@ public class BoundingRectangle
                this.minimum.y <= pt.y && pt.y <= this.maximum.y;
     }
 
+    public boolean intersects(BoundingRectangle bounds)
+    {
+        if(this.maximum.x < bounds.maximum.x)
+            return false;
+        if(this.maximum.y < bounds.maximum.y)
+            return false;
+
+        if(this.minimum.x > bounds.minimum.y)
+            return false;
+        if(this.minimum.y > bounds.minimum.y)
+            return false;
+
+        return true;
+    }
+
     public void setMinimum(Point min)
     {
         this.minimum = min;

@@ -28,6 +28,11 @@ public abstract class Entity
         this.bounds = new BoundingRectangle(this.position, this.size);
     }
 
+    public BoundingRectangle getBounds()
+    {
+        return bounds;
+    }
+
     public void update(float deltaT)
     {
         // We update our bounding box each frame in case the size or position of our object changes
