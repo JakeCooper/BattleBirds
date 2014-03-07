@@ -11,7 +11,7 @@ public class Block extends Entity {
 
 
     public Block(Point createPosition){
-        super(createPosition, 10, 10);
+        super(createPosition, new Point(10, 10));
 
     }/*BlockConstructor*/
 
@@ -19,6 +19,8 @@ public class Block extends Entity {
     {
         if(position.y < 550)
             position.y += 10;
+
+        super.update(deltaT);
     }
 
 }/*BlockClass*/

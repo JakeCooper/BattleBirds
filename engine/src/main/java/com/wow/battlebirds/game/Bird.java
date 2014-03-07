@@ -17,7 +17,7 @@ public class Bird extends Entity {
     public int eggYPos;
 
     Bird(Point createPosition, int Velocity, float angle){
-        super(createPosition, 20, 20);
+        super(createPosition, new Point(20, 20));
 
         Vx = Velocity * (float)Math.cos(angle);
         Vy = Velocity * (float)Math.sin(angle);
@@ -35,7 +35,7 @@ public class Bird extends Entity {
     @Override
     public void update(float deltaT)
     {
-
+        super.update(deltaT);
     }
 
 }

@@ -16,11 +16,8 @@ public class Cannon extends Entity {
     public float Vx;
     public float Vy;
 
-    private final int length = 20; //Hardcoded sizes for the cannon
-    private final int height = 20;
-
     Cannon(Point createPosition, int ammo, int player){
-        super(createPosition, 50, 50);
+        super(createPosition, new Point(50, 50));
         this.ammo = ammo;
 
         cannonCalibration();
@@ -46,6 +43,6 @@ public class Cannon extends Entity {
     @Override
     public void update(float deltaT)
     {
-
+        super.update(deltaT);
     }
 }

@@ -2,6 +2,7 @@ package com.wow.battlebirds.engine.entity;
 
 import android.graphics.Point;
 import com.wow.battlebirds.engine.entity.asset.Asset;
+import com.wow.battlebirds.engine.entity.collision.BoundingRectangle;
 import com.wow.battlebirds.engine.renderer.IRenderer;
 
 /**
@@ -14,32 +15,24 @@ public abstract class Entity
     public Asset asset;
 
     public Point position;
+    public Point size;
 
-    public int length;
-    public int height;
+    private BoundingRectangle bounds;
 
-    public Point[] corners;
+    public Entity(Point createPosition, Point createSize){
 
-    public Point[] GetPoints() {
-        Point Tl = new Point((this.position.x - (this.length / 2)), (this.position.y + this.height / 2));
-        Point Tr = new Point((this.position.x + (this.length / 2)), (this.position.y + this.height / 2));
-        Point Bl = new Point((this.position.x - (this.length / 2)), (this.position.y - this.height / 2));
-        Point Br = new Point((this.position.x + (this.length / 2)), (this.position.y - this.height / 2));
-
-        Point[] BlockPoints = {Tl, Bl, Br, Tr};
-
-        return BlockPoints;
-    }
-
-    public Entity(Point createPosition, int length, int height){
-        this.length = length;
-        this.height = height;
-
+        this.size = createSize;
         this.position = createPosition;
-        this.corners = GetPoints();
+
+        // Create our bounding rectangle
+        this.bounds = new BoundingRectangle(this.position, this.size);
     }
 
-    public abstract void update(float deltaT);
+    public void update(float deltaT)
+    {
+        // We update our bounding box each frame in case the size or position of our object changes
+        this.bounds.setExtents(this.position, this.size);
+    }
 
     public void draw(IRenderer renderer)
     {

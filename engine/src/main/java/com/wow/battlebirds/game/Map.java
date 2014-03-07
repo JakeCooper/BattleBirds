@@ -13,7 +13,7 @@ public class Map extends Entity {
 
     Map()
     {
-        super(new Point(0,0), 0, 0);
+        super(new Point(0,0), new Point(0, 0));
     }
 
     void updateOffset(int newOffset)
