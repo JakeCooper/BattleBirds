@@ -2,6 +2,7 @@ package com.wow.battlebirds.engine;
 
 import android.graphics.Point;
 
+import com.wow.battlebirds.engine.entity.Entity;
 import com.wow.battlebirds.engine.entity.EntityManager;
 import com.wow.battlebirds.engine.entity.asset.AssetFactory;
 import com.wow.battlebirds.engine.input.BaseTouchInput;
@@ -54,20 +55,34 @@ public class Engine implements EngineInterface, ITouchEventCallback
 
     public void onTouch(TouchEvent event)
     {
-        if(event.getMotionType() == TouchEvent.TOUCH_DOWN)
-        {
-            try {
-                EngineLock.lock();
-                // Here we'll eventually have to figure out which object is actually touched
-                // by the event, which will require collision detect and iteration of objects.
+        boolean isCollision = false;
 
-                Block b = new Block(new Point((int)(event.getX() * input.scaleX), (int)(event.getY() * input.scaleY)));
+        try {
+            EngineLock.lock();
+
+            // We break when an object is touched, so the event doesn't propagate to every single
+            // object in the touched area, resulting in every object under the cursor being selected.
+            // We only want the topmost object to actually be touched.
+            for(Entity a : EntityManager.retrieveEntities())
+            {
+                if(a.onTouched(event))
+                {
+                    isCollision = true;
+                    break;
+                }
+            }
+
+            // If not a single object was collided with, then we create a new block in the empty space.
+            if( !isCollision && event.getMotionType() == TouchEvent.TOUCH_DOWN )
+            {
+                Block b = new Block(new Point((int)event.getX(), (int)event.getY()));
                 b.asset = getAssetFactory().getAsset("Box2.png");
 
                 EntityManager.addEntity(b);
-            } finally {
-                EngineLock.unlock();
             }
+
+        } finally {
+            EngineLock.unlock();
         }
     }
 

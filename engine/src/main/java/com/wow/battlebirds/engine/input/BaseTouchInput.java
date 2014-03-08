@@ -24,6 +24,9 @@ public abstract class BaseTouchInput implements View.OnTouchListener
 
     public void fireTouchEvent(TouchEvent event)
     {
+        event.x *= scaleX;
+        event.y *= scaleY;
+
         this.TouchEventCallback.onTouch(event);
     }
 }

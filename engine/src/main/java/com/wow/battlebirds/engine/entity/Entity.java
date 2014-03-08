@@ -3,6 +3,7 @@ package com.wow.battlebirds.engine.entity;
 import android.graphics.Point;
 import com.wow.battlebirds.engine.entity.asset.Asset;
 import com.wow.battlebirds.engine.entity.collision.BoundingRectangle;
+import com.wow.battlebirds.engine.input.TouchEvent;
 import com.wow.battlebirds.engine.renderer.IRenderer;
 
 /**
@@ -33,8 +34,16 @@ public abstract class Entity
         return bounds;
     }
 
+    public boolean onTouched(TouchEvent event)
+    {
+        return false;
+    }
+
     public void update(float deltaT)
     {
+        this.size.x = this.position.x+80;
+        this.size.y = this.position.y+80;
+
         // We update our bounding box each frame in case the size or position of our object changes
         this.bounds.setExtents(this.position, this.size);
     }

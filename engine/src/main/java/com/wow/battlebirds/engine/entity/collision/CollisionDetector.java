@@ -13,7 +13,7 @@ import com.wow.battlebirds.engine.entity.Entity;
  */
 public class CollisionDetector {
 
-    // Pixel perfect implementation of collision detect.
+    // Pixel perfect implementation of collision detection.
     // Optimized by only checking overlapping area between bounding rectangles,
     // and checks that overlapping pixels are not transparent.
     public static boolean isCollidedWith(Entity one, Entity two)
