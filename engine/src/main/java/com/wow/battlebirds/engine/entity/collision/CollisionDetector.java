@@ -36,8 +36,8 @@ public class CollisionDetector {
                 for(int j = area.getMinimum().y; j < area.getMaximum().y; j++)
                 {
                     // Retrieve pixel reference from both bitmaps that are overlapping
-                    int pixel1 = bit1.getPixel(i - area.getMinimum().x, i - area.getMinimum().y);
-                    int pixel2 = bit2.getPixel(j - area.getMaximum().x, j - area.getMaximum().y);
+                    int pixel1 = bit1.getPixel(Math.min(i - one.position.x, bit1.getWidth()-1), Math.min(j - one.position.y, bit1.getHeight()-1));
+                    int pixel2 = bit2.getPixel(Math.min(i - two.position.x, bit2.getWidth()-1), Math.min(j - two.position.y, bit2.getHeight()-1));
 
                     // If neither pixel is transparent, we have a legitimate intersection
                      if(!isPixelTransparent(pixel1) && !isPixelTransparent(pixel2))

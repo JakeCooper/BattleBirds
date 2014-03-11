@@ -20,6 +20,8 @@ public abstract class Entity
 
     private BoundingRectangle bounds;
 
+    protected boolean touchDown;
+
     public Entity(Point createPosition, Point createSize){
 
         this.size = createSize;
@@ -27,6 +29,10 @@ public abstract class Entity
 
         // Create our bounding rectangle
         this.bounds = new BoundingRectangle(this.position, this.size);
+
+        // This boolean is set to true when the entity is touched by player input
+        // to track pointer movement, and set to false when the entity is released
+        this.touchDown = false;
     }
 
     public BoundingRectangle getBounds()

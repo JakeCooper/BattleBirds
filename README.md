@@ -1,4 +1,4 @@
-Box Dropping Simulator 2014
+Box Stacking Simulator 2014
 ===========================
 
 \#CodeWars14
@@ -6,8 +6,8 @@ Box Dropping Simulator 2014
     Many cannon
                                        So Box
                                        
-              Such Drop  
-                                    
-                              Much Birds
+              Such Drop
+                                     Very Stack
 
+                       Much Birds
     WOW

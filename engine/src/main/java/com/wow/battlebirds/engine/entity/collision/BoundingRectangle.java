@@ -34,14 +34,13 @@ public class BoundingRectangle
 
     public boolean intersects(BoundingRectangle bounds)
     {
-        if(this.maximum.x < bounds.maximum.x)
+        if(this.maximum.x < bounds.minimum.x)
             return false;
-        if(this.maximum.y < bounds.maximum.y)
+        else if(this.maximum.y < bounds.minimum.y)
             return false;
-
-        if(this.minimum.x > bounds.minimum.y)
+        else if(this.minimum.x > bounds.maximum.x)
             return false;
-        if(this.minimum.y > bounds.minimum.y)
+        else if(this.minimum.y > bounds.maximum.y)
             return false;
 
         return true;
