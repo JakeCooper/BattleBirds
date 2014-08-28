@@ -1,10 +1,10 @@
 #Meet BattleBirds
 
-BattleBirds is a multiplayer, turn based, attack and defend game.
+BattleBirds is a multiplayer, turn based, attack and defend game. You play as a bird who is trying to both defend his cannon, and destroy an opposing birds cannon.
 
 #The Game
 
-You start the game as a bird perched atop a cannon. There are two phases to the game.
+You start the game as a bird perched atop a cannon. There are three phases to the game.
 
 ##Phase 1: Build
 
